@@ -29,6 +29,8 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -152,13 +154,12 @@
         </div>
     </div>
     <!-- Modal End -->
-
-   <div class="container-fluid py-5 ">
+<div class="container-fluid py-5">
     <div class="container">
         <div class="text-center wow fadeIn" data-wow-delay="0.1s">
-            <h1 class="mb-5" style=" display: inline-block; position: relative;">
+            <h1 class="mb-5" style="display: inline-block; position: relative;">
                 Honoring Extraordinary Records <br>
-                <span style=" font-weight: 600;">Celebrating Achievements That Inspire the World</span>
+                <span style="font-weight: 600;">Celebrating Achievements That Inspire the World</span>
                 <span
                     style="position: absolute; left: 0; bottom: -5px; width: 100%; height: 4px; background: linear-gradient(90deg, #e6ccff, #b19cd9); border-radius: 2px;"></span>
             </h1>
@@ -167,10 +168,33 @@
         <div class="row gy-4 gx-md-5 gx-3 align-items-stretch text-center">
             @foreach($categories as $category)
                 <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="choose-card h-100" style="background-color: #e3d8b5;">
+                    <div class="choose-card h-100 p-4" style="background-color: #e3d8b5; border-radius: 10px;">
                         <i class="fa fa-star fa-5x text-primary mb-4"></i>
                         <h4>{{ $category->name }}</h4>
                         <p>{{ $category->description }}</p>
+
+                        <div class="d-flex justify-content-center gap-2 mt-3">
+                            <!-- Edit Button -->
+                            <button 
+                                class="btn btn-primary btn-sm editBtn" 
+                                data-id="{{ $category->id }}"
+                                data-name="{{ $category->name }}"
+                                data-description="{{ $category->description }}"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#editCategoryModal">
+                                <i class="fa fa-edit"></i> Edit
+                            </button>
+
+                            <!-- Delete Button -->
+                           <form action="{{ route('admin.adminCategory.destroy', $category->id) }}" method="POST" class="deleteForm">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i> Delete
+                            </button>
+                        </form>
+
+                        </div>
                     </div>
                 </div>
             @endforeach
@@ -178,8 +202,38 @@
     </div>
 </div>
 
+{{-- Edit Modal --}}
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form id="editCategoryForm" action="" method="POST">
+    @csrf
+    @method('PUT')
+    <!-- form fields -->
+            <div class="modal-content">
+                <div class="modal-header bg-secondary text-white">
+                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Category Name</label>
+                        <input type="text" class="form-control" id="edit_name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" id="edit_description" name="description" rows="3" required></textarea>
+                    </div>
+                </div>
 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 
     <!-- Back to Top -->
@@ -196,6 +250,53 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
+   <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const editButtons = document.querySelectorAll('.editBtn');
+    const form = document.getElementById('editCategoryForm');
+    const nameField = document.getElementById('edit_name');
+    const descField = document.getElementById('edit_description');
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const id = this.dataset.id;
+            const name = this.dataset.name;
+            const description = this.dataset.description;
+
+            nameField.value = name;
+            descField.value = description;
+
+            // Set form action dynamically
+            form.action = `/admin/adminCategory/${id}`;
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const deleteForms = document.querySelectorAll('.deleteForm');
+
+    deleteForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // prevent form from submitting immediately
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // submit the form if confirmed
+                }
+            });
+        });
+    });
+});
+</script>
+
 </body>
 
 </html>
