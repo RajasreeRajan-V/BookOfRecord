@@ -193,6 +193,9 @@
                                 <i class="fa fa-trash"></i> Delete
                             </button>
                         </form>
+                        <a href="{{ route('admin.adminCategory.show', $category->id) }}" class="btn btn-info btn-sm">
+        <i class="fa fa-eye"></i> View Records
+    </a>
 
                         </div>
                     </div>

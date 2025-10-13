@@ -7,8 +7,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-
-class AdminCategory extends Controller
+use App\Models\Record;
+class AdminCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,7 +42,9 @@ class AdminCategory extends Controller
      */
     public function show(string $id)
     {
-        //
+       $category = Category::findOrFail($id);
+        $records = Record::where('category_id', $id)->get();
+    return view('admin.category_records', compact('category', 'records'));
     }
 
     /**

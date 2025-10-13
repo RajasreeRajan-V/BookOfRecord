@@ -193,11 +193,19 @@
               </p>
             </a>
           </li>
-             <li class="nav-item">
+          <li class="nav-item">
             <a href="{{ route('admin.adminCategory.index') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Create Category
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.adminRecord.index') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Create Records
               </p>
             </a>
           </li>

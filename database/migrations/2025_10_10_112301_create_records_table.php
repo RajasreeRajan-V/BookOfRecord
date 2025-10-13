@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->longText('description')->nullable();
+            $table->string('image');
+            $table->string('record_no')->unique();
+            $table->unsignedBigInteger('category_id');
+            $table->longText('details')->nullable();
             $table->timestamps();
+            $table->foreign('category_id')
+                  ->references('id')
+                  ->on('categories')
+                  ->onDelete('cascade');
         });
     }
 

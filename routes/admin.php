@@ -6,8 +6,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\FeatureController;
-use App\Http\Controllers\Admin\AdminCategory;
+use App\Http\Controllers\Admin\AdminRecordController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\ContactController;
 
 
@@ -22,7 +22,9 @@ use Illuminate\Support\Facades\Route;
         Route::resource('aboutUs', AboutUsController::class);
         Route::resource('gallery', GalleryController::class);
         Route::resource('contactUs', ContactController::class);
-        Route::resource('adminCategory', AdminCategory::class);
+        Route::resource('adminCategory', AdminCategoryController::class);
+        Route::resource('adminRecord', AdminRecordController::class);
+
         Route::post('/contactUs/reply', [ContactController::class, 'reply'])->name('contactUs.reply');
 
 
