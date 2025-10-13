@@ -7,6 +7,7 @@ use App\Models\AboutUs;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreAboutUsRequest;
 use App\Http\Requests\UpdateAboutUsRequest;
+use App\Models\Category;
 class AboutUsController extends Controller
 {
     /**
@@ -15,7 +16,8 @@ class AboutUsController extends Controller
     public function index()
     {   
         $about = AboutUs::latest()->first();
-        return view("admin.about_us", compact("about"));
+        $categories = Category::with('records')->get();
+        return view("admin.about_us", compact("about","categories"));
     }
 
     /**

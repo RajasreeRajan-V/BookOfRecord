@@ -80,4 +80,5 @@ class AdminCategoryController extends Controller
         $category->delete();
         return redirect()->back()->with('success', 'Category deleted successfully!');
     }
+    
 }

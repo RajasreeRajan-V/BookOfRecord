@@ -5,16 +5,28 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-   public function index()
+   public function index(Request $request)
     {
-        $contacts = ContactUs::latest()->paginate(10);
-        return view('admin.contactUs', compact('contacts'));
+        $categories = Category::with('records')->get();
+        $query = ContactUs::query();
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%")
+                ->orWhere('message', 'like', "%{$search}%");
+            });
+        }
+        $contacts = $query->latest()->paginate(10);
+        return view('admin.contactUs', compact('contacts','categories'));
     }
 
     /**
