@@ -14,7 +14,7 @@
 
 <body>
   <div class="login-wrapper">
-    <img src="img/logo.png" alt="Logo" class="logo">
+    <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo">
     <h2>Welcome <span>Back</span></h2>
     <p class="text-muted">
       Welcome to Book of Records! Please log in to continue your extraordinary journey.

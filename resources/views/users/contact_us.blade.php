@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>BOOK OF RECORD - Interior Design Website Template Free</title>
+    <title>BOOK OF RECORD</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -41,13 +41,12 @@
     </div>
     <!-- Spinner End -->
 
-
     <!-- Navbar Start -->
     <div class="container-fluid sticky-top">
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
-                 <a href="index.html" class="navbar-brand d-flex align-items-center">
-                    <img src="img/logo.png" alt="Book of Record Logo" class="logo-img me-3" style="height:50px;">
+             <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
+                <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center">
+                    <img src="{{ asset('img/logo.png') }}" alt="Book of Record Logo" class="logo-img me-3" style="height:50px;">
                     <span style="
                         font-family: 'Space Grotesk', sans-serif; 
                         font-weight: 800; 
@@ -62,9 +61,10 @@
                     </span>
                 </a>
 
-                    <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
@@ -72,12 +72,17 @@
                         <a href="{{ route('about') }}" class="nav-item nav-link">About Us</a>
                         <a href="{{ route('gallery') }}" class="nav-item nav-link">Gallery</a>
                         <a href="{{ route('category') }}" class="nav-item nav-link">Inspiring Records</a>
-                        <div class="nav-item dropdown">
-                            <a href="{{ route('category') }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
+                       <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                             <div class="dropdown-menu bg-light mt-2">
-                                <a href="feature.html" class="dropdown-item">Features</a>
+                                @foreach($categorious as $category)
+                                    <a href="{{ route('category.record', $category->id) }}" class="dropdown-item">
+                                        {{ $category->name }}
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
+
                         <a href="{{ route('contact.index') }}" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
@@ -92,13 +97,15 @@
         <div class="container py-5">
             <div class="row g-3 align-items-center">
                 <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="display-1 mb-0 animated slideInLeft">Contact</h1>
-                </div>
+                        <h1 class="mb-0 animated slideInLeft" 
+                            style="white-space: nowrap;color: white;">
+                            Contact Us
+                        </h1>
+                    </div>
                 <div class="col-lg-6 animated slideInRight">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
-                            <li class="breadcrumb-item"><a class="text-primary" href="#!">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-primary" href="#!">Pages</a></li>
+                            <li class="breadcrumb-item"><a class="text-primary" href="{{ route('home') }}">Home</a></li>
                             <li class="breadcrumb-item text-secondary active" aria-current="page">Contact</li>
                         </ol>
                     </nav>
@@ -163,104 +170,87 @@
     </div>
     <!-- Contact End -->
 
+<!-- Footer Start -->
+<div class="container-fluid text-dark-50 footer pt-5" style="background-color: #c7b16b;">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                <a href="{{ route('home') }}" class="d-inline-block mb-3">
+                    <h1 class="text-dark">BOOK OF RECORD</h1>
+                </a>
+                <p class="mb-0" style="color: #4d194d;">
+                    Book of Record is a global platform dedicated to recognizing extraordinary achievements and
+                    inspiring individuals to push beyond their limits.
+                    We honor talents, innovations, and milestones that make a difference celebrating every story
+                    of
+                    determination, creativity, and excellence.
+                    Our mission is to document greatness and motivate others to dream big, act bold, and leave a
+                    lasting impact on the world.
+                </p>
 
-    <!-- Newsletter Start -->
-    <div class="container-fluid bg-primary newsletter p-0">
-        <div class="container p-0">
-            <div class="row g-0 align-items-center">
-                <div class="col-md-5 ps-lg-0 text-start wow fadeIn" data-wow-delay="0.2s">
-                    <img class="img-fluid w-100" src="img/newsletter.jpg" alt="">
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+
+            </div>
+            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+                <h5 class="text-dark mb-4">Our Highlights</h5>
+                <ul class="list-unstyled" style="color: #4d194d;">
+                    <li><i class="fa-solid fa-star me-2"></i>Recognizing Extraordinary Achievements</li>
+                    <li><i class="fa-solid fa-trophy me-2"></i>Inspiring Individuals Worldwide</li>
+                    <li><i class="fa-solid fa-book me-2"></i>Documenting Talents and Milestones</li>
+                    <li><i class="fa-solid fa-lightbulb me-2"></i>Motivating Creativity and Excellence</li>
+                </ul>
+            </div>
+
+            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
+                <h5 class="text-dark mb-4">Quick Links</h5>
+                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                    href="{{ route('home') }}">
+                    <i class="fa-solid fa-house me-2"></i> Home
+                </a>
+
+                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                    href="{{ route('about') }}">
+                    <i class="fa-solid fa-circle-info me-2"></i> About Us
+                </a>
+
+                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                    href="{{ route('gallery') }}">
+                    <i class="fa-solid fa-images me-2"></i> Gallery
+                </a>
+
+                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                    href="{{ route('category') }}">
+                    <i class="fa-solid fa-trophy me-2"></i> Inspiring Records
+                </a>
+
+                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                    href="{{ route('contact.index') }}">
+                    <i class="fa-solid fa-envelope me-2"></i> Contact
+                </a>
+
+            </div>
+        </div>
+    </div>
+    <div class="container wow fadeIn" data-wow-delay="0.1s">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="footer-text" style="margin-top:15px;">
+                        Copyright &copy; 2025
+                        <a href="http://astrasoftwaresolutions.com/" target="_blank"
+                            style="color: #4d194d;">ASTRA
+                            SOFTWARE SOLUTIONS</a> | All rights reserved
+                    </p>
                 </div>
-                <div class="col-md-7 py-5 newsletter-text wow fadeIn" data-wow-delay="0.5s">
-                    <div class="p-5">
-                        <h1 class="mb-5">Subscribe the <span
-                                class="text-uppercase text-primary bg-white px-2">Newsletter</span></h1>
-                        <div class="position-relative w-100 mb-2">
-                            <input class="form-control border-0 w-100 ps-4 pe-5" type="text"
-                                placeholder="Enter Your Email" style="height: 60px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-2 me-2"><i
-                                    class="fa fa-paper-plane text-primary fs-4"></i></button>
-                        </div>
-                        <p class="mb-0">Diam sed sed dolor stet amet eirmod</p>
-                    </div>
+                <div class="col-md-6 text-center text-md-end">
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- Newsletter End -->
-
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 footer pt-5">
-        <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
-                    <a href="index.html" class="d-inline-block mb-3">
-                        <h1 class="text-white">BOOK OF RECORD</h1>
-                    </a>
-                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
-                        amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus
-                        clita duo justo et tempor</p>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
-                    <h5 class="text-white mb-4">Get In Touch</h5>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-outline-primary btn-square border-2 me-2" href="#!"><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-primary btn-square border-2 me-2" href="#!"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-primary btn-square border-2 me-2" href="#!"><i
-                                class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-primary btn-square border-2 me-2" href="#!"><i
-                                class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-primary btn-square border-2 me-2" href="#!"><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
-                    <h5 class="text-white mb-4">Popular Link</h5>
-                    <a class="btn btn-link" href="#!">About Us</a>
-                    <a class="btn btn-link" href="#!">Contact Us</a>
-                    <a class="btn btn-link" href="#!">Privacy Policy</a>
-                    <a class="btn btn-link" href="#!">Terms & Condition</a>
-                    <a class="btn btn-link" href="#!">Career</a>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
-                    <h5 class="text-white mb-4">Our Services</h5>
-                    <a class="btn btn-link" href="#!">Interior Design</a>
-                    <a class="btn btn-link" href="#!">Project Planning</a>
-                    <a class="btn btn-link" href="#!">Renovation</a>
-                    <a class="btn btn-link" href="#!">Implement</a>
-                    <a class="btn btn-link" href="#!">Landscape Design</a>
-                </div>
-            </div>
-        </div>
-        <div class="container wow fadeIn" data-wow-delay="0.1s">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                       <p class="footer-text" style="margin-top:15px;">
-							Copyright &copy; 2025
-							<a href="http://astrasoftwaresolutions.com/" target="_blank" style="color: #4d194d;">ASTRA
-								SOFTWARE SOLUTIONS</a> | All rights reserved
-						</p>
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <div class="footer-menu">
-                            <a href="#!">Home</a>
-                            <a href="#!">Cookies</a>
-                            <a href="#!">Help</a>
-                            <a href="#!">FAQs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
+</div>
+<!-- Footer End -->
 
 
     <!-- Back to Top -->

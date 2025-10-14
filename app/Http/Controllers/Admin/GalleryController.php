@@ -84,6 +84,15 @@ class GalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $gallery = Gallery::findOrFail($id);
+
+        if ($gallery->img && file_exists(storage_path('app/public/' . $gallery->img))) {
+            unlink(storage_path('app/public/' . $gallery->img));
+        }
+
+        $gallery->delete();
+
+        return redirect()->back()->with('success', 'Gallery deleted successfully.');
     }
+
 }

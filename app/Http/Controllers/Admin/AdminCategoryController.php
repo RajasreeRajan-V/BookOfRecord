@@ -43,8 +43,8 @@ class AdminCategoryController extends Controller
     public function show(string $id)
     {
        $category = Category::findOrFail($id);
-        $records = Record::where('category_id', $id)->get();
-    return view('admin.category_records', compact('category', 'records'));
+       $records = Record::where('category_id', $id)->get();
+        return view('admin.category_records', compact('category', 'records'));
     }
 
     /**

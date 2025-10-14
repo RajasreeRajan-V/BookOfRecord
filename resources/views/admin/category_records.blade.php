@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>BOOK OF RECORD - Interior Design Website Template Free</title>
+    <title>BOOK OF RECORD</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -46,10 +46,11 @@
         <div class="container py-5">
             <div class="row g-3 align-items-center">
                 <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="display-1 mb-0 animated slideInLeft" style="font-size: clamp(2rem, 5vw, 6rem);">
-                        {{ $category->name }}
-                    </h1>
-                </div>
+                        <h1 class="mb-0 animated slideInLeft" 
+                            style="white-space: nowrap;color: white;">
+                             {{ $category->name }}
+                        </h1>
+                    </div>
                 <div class="col-lg-6 animated slideInRight">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
@@ -66,7 +67,18 @@
         </div>
     </div>
     <!-- Hero End -->
-
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+         style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
+        
+        <!-- Success Icon -->
+        <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+        
+        <div>{{ session('success') }}</div>
+        
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
     <!-- Records Section -->
     <div class="container py-5">
         <h2 class="mb-4">{{ $category->name }} - Records</h2>

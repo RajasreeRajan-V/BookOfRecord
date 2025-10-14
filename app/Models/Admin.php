@@ -10,6 +10,7 @@ class Admin extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\AdminFactory> */
     use HasFactory;
+     protected $guard = 'admin';
     protected $fillable = [
         'name',
         'email',

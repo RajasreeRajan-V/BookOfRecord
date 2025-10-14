@@ -3,23 +3,25 @@
 
 <head>
     <meta charset="utf-8">
-  
-<title>BOOK OF RECORD</title>
 
-<link rel="icon" type="image/png" href="img/logo.png">
+    <title>BOOK OF RECORD</title>
+
+    <link rel="icon" type="image/png" href="img/logo.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
     <meta charset="utf-8">
-    <title>BOOK OF RECORD - Interior Design Website Template Free</title>
+    <title>BOOK OF RECORD</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,8 +57,8 @@
     <div class="container-fluid sticky-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
-                 <a href="index.html" class="navbar-brand d-flex align-items-center">
-                    <img src="img/logo.png" alt="Book of Record Logo" class="logo-img me-3" style="height:50px;">
+                <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center">
+                    <img src="{{ asset('img/logo.png') }}" alt="Book of Record Logo" class="logo-img me-3" style="height:50px;">
                     <span style="
                         font-family: 'Space Grotesk', sans-serif; 
                         font-weight: 800; 
@@ -71,9 +73,10 @@
                     </span>
                 </a>
 
-                    <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
@@ -81,12 +84,17 @@
                         <a href="{{ route('about') }}" class="nav-item nav-link">About Us</a>
                         <a href="{{ route('gallery') }}" class="nav-item nav-link">Gallery</a>
                         <a href="{{ route('category') }}" class="nav-item nav-link">Inspiring Records</a>
-                        <div class="nav-item dropdown">
-                            <a href="{{ route('category') }}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
+                       <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                             <div class="dropdown-menu bg-light mt-2">
-                                <a href="feature.html" class="dropdown-item">Features</a>
+                                @foreach($categorious as $category)
+                                    <a href="{{ route('category.record', $category->id) }}" class="dropdown-item">
+                                        {{ $category->name }}
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
+
                         <a href="{{ route('contact.index') }}" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
@@ -102,10 +110,12 @@
                 <!-- Text Column -->
                 <div class="col-lg-6" style="position: relative; z-index: 2;">
                     <h1 style="font-size:64px;font-weight:700;color:#4d194d;line-height:1.2;">
-                        Discover The<span style="color:#c7b16b;"> Extra</span> Ordinary 
+                        Discover The<span style="color:#c7b16b;"> Extra</span> Ordinary
                     </h1>
-                    <h5 style="border:1px solid #cfd9d8;padding:10px 25px;font-weight:500;color:#4d194d;display:inline-block;margin-top:10px;">
-                        Discover the extraordinary in every record, from human achievements to natural wonders, all in one place.
+                    <h5
+                        style="border:1px solid #cfd9d8;padding:10px 25px;font-weight:500;color:#4d194d;display:inline-block;margin-top:10px;">
+                        Discover the extraordinary in every record, from human achievements to natural wonders, all in
+                        one place.
                     </h5>
                 </div>
 
@@ -127,15 +137,15 @@
                         <!-- Owl Carousel -->
                         <div class="owl-carousel owl-theme" style="width:100%; height:100%;">
                             <div class="item">
-                                <img class="img-fluid" src="{{ asset('img/hero-slider-1.jpg')}}" alt=""
+                                <img class="img-fluid" src="{{ asset('img/image2.png')}}" alt=""
                                     style="width:100%;height:auto;object-fit:cover;transition: transform 0.5s ease;">
                             </div>
                             <div class="item">
-                                <img class="img-fluid" src="{{ asset('img/hero-slider-2.jpg')}}" alt=""
+                                <img class="img-fluid" src="{{ asset('img/image3.png')}}" alt=""
                                     style="width:100%;height:auto;object-fit:cover;transition: transform 0.5s ease;">
                             </div>
                             <div class="item">
-                                <img class="img-fluid" src="{{ asset('img/hero-slider-3.jpg')}}" alt=""
+                                <img class="img-fluid" src="{{ asset('img/image1.png')}}" alt=""
                                     style="width:100%;height:auto;object-fit:cover;transition: transform 0.5s ease;">
                             </div>
                         </div>
@@ -162,191 +172,137 @@
             </div>
         </div>
     </div>
-<br><br>
+    <br><br>
+    <!-- About Start -->
     <!-- About Start -->
     <div class="container-fluid py-5 about-section">
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-6 wow fadeIn" data-wow-delay="0.1s" style="border: 3px solid #4d194d; border-radius: 3px;">
-                            <img class="img-fluid" src="img/about-1.jpg" alt="">
-                        </div>
-                        <div class="col-6 wow fadeIn" data-wow-delay="0.3s" style="border: 3px solid #c7b16b; border-radius: 5px;">
-                            <img class="img-fluid h-75" src="img/about-2.jpg" alt="">
-                            <div class="h-25 d-flex align-items-center text-center bg-primary px-4">
-                                <h4 class="text-white lh-base mb-0">Award Winning Studio Since 1990</h4>
+                        @if($about)
+                            <div class="col-6 wow fadeIn" data-wow-delay="0.1s"
+                                style="border: 3px solid #4d194d; border-radius: 1px;">
+                                <img class="img-fluid" src="{{ asset('storage/' . $about->img1) }}" alt="">
                             </div>
-                        </div>
-
+                            <div class="col-6 wow fadeIn" data-wow-delay="0.3s"
+                                style="border: 3px solid #c7b16b; border-radius: 1px;">
+                                <img class="img-fluid h-75" src="{{ asset('storage/' . $about->img2) }}" alt="">
+                                <div class="h-25 d-flex align-items-center text-center bg-primary px-4">
+                                    <h4 class="text-white lh-base mb-0">{{ $about->title }}</h4>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="mb-5"><span class="text-uppercase text-primary bg-light px-2">About Us</span>Our Journey & Vision</h1>
-                    <p class="mb-4">At Book of Record, we celebrate the extraordinary potential of every individual and the boundless spirit of achievement. Since our inception, we have stood as a trusted platform that recognizes, honors, and preserves remarkable feats and inspiring stories that push the limits of human capability.
-Our mission goes beyond documenting records it's about encouraging innovation, courage, and excellence that uplift society and inspire others to dream bigger. We take pride in being a part of a global community that values determination and creativity, showcasing the talents that transcend borders and unite people through shared aspirations.
-As we continue our journey, we remain dedicated to the principle that “All is One.” Talent knows no boundary it thrives regardless of religion, region, or background. With a vision rooted in inclusiveness, fairness, and passion, 'Book of Record' continues to empower achievers and celebrate every story that contributes to the collective progress of humankind.
-</p>
-                    <div class="row g-3">
-    <div class="col-sm-6">
-        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Globally Recognized</h6>
-        <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Expert Record Verification</h6>
-    </div>
-    <div class="col-sm-6">
-        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Inclusive & Fair</h6>
-        <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>24/7 Record Support</h6>
-    </div>
-</div>
-
-                    <div class="d-flex align-items-center mt-5">
-                        <a class="btn btn-primary px-4 me-2" href="#!">Read More</a>
-                        <a class="btn btn-outline-primary btn-square border-2 me-2" href="#!"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-primary btn-square border-2 me-2" href="#!"><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-primary btn-square border-2 me-2" href="#!"><i
-                                class="fab fa-instagram"></i></a>
-                        <a class="btn btn-outline-primary btn-square border-2" href="#!"><i
-                                class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    @if($about)
+                        <h1 class="mb-5"><span class="text-uppercase text-primary bg-light px-2">About
+                                Us</span>{{ $about->title }}</h1>
+                        <p class="mb-4">{{ $about->desc }}</p>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>{{ $about->tag1 }}</h6>
+                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>{{ $about->tag2 }}</h6>
+                            </div>
+                            <div class="col-sm-6">
+                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>{{ $about->tag3 }}</h6>
+                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>{{ $about->tag4 }}</h6>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <!-- About End -->
-   
- <!-- Feature Start -->
-<div class="container-fluid py-5 choose-us-section">
-  <div class="container">
-    <div class="text-center wow fadeIn" data-wow-delay="0.1s">
-      <h1 class="mb-5" style="color: #e6ccff; display: inline-block; position: relative;">
-  Honoring Extraordinary Records <br>
-  <span style="color: #e6ccff; font-weight: 600;">Celebrating Achievements That Inspire the World</span>
-  <span style="position: absolute; left: 0; bottom: -5px; width: 100%; height: 4px; background: linear-gradient(90deg, #e6ccff, #b19cd9); border-radius: 2px;"></span>
-</h1>
 
+    <!-- About End -->
+
+    <!-- Feature Start -->
+    <div class="container-fluid py-5 choose-us-section">
+        <div class="container">
+            <div class="text-center wow fadeIn" data-wow-delay="0.1s">
+                <h1 class="mb-5" style="color: #e6ccff; display: inline-block; position: relative;">
+                    Honoring Extraordinary Records <i class="fas fa-medal" style="margin-left:10px;"></i><br>
+                    <span style="color: #e6ccff; font-weight: 600;">
+                        Celebrating Achievements That Inspire
+                    </span>
+                    <span style="position: absolute; left: 0; bottom: -5px; width: 100%; height: 4px; 
+                 background: linear-gradient(90deg, #e6ccff, #b19cd9); border-radius: 2px;"></span>
+                </h1>
+
+            </div>
+
+            <div class="row gy-4 gx-md-5 gx-3 text-center">
+                @foreach($categories as $index => $category)
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="{{ 0.1 + ($index * 0.2) }}s">
+                        <div class="choose-card h-100">
+                            <i class="fa fa-star fa-5x text-primary mb-4"></i>
+                            <h4 style="overflow-wrap:break-word; word-break:break-word; font-weight:600;">
+                                {{ $category->name }}
+                            </h4>
+                            <p style="overflow-wrap:break-word; word-break:break-word;">
+                                {{ $category->description }}
+                            </p>
+
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
-    <div class="row gy-4 gx-md-5 gx-3 align-items-stretch text-center">
-      <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-        <div class="choose-card h-100">
-          <i class="fa fa-star fa-5x text-primary mb-4"></i>
-           <h4>Arts & Entertainment</h4>
-          <p>Celebrating extraordinary achievements in visual arts, painting, sculpture, literature, photography, music and all forms of creative expression worldwide.</p>
-        </div>
-      </div>
+    <!-- Feature End -->
 
-      <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-        <div class="choose-card h-100">
-          <i class="fa fa-star fa-5x text-primary mb-4"></i>
-           <h4>Business & Economy</h4>
-          <p>Honoring entrepreneurs, innovators, and organizations that achieve remarkable milestones in business and economic impact.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-        <div class="choose-card h-100">
-          <i class="fa fa-star fa-5x text-primary mb-4"></i>
-         <h4>Creativity, Structure & Architecture</h4>
-          <p>Recognizing visionary architects, designers, and creators whose work inspires innovation and elevates global standards.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-        <div class="choose-card h-100">
-          <i class="fa fa-star fa-5x text-primary mb-4"></i>
-         <h4>Culture & Society</h4>
-          <p>Honoring individuals and initiatives that preserve heritage, promote inclusiveness, and impact communities positively worldwide.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-        <div class="choose-card h-100">
-          <i class="fa fa-star fa-5x text-primary mb-4"></i>
-          <h4>Human Body & Abilities</h4>
-          <p>Celebrating extraordinary physical, mental, and intellectual achievements that demonstrate the limitless potential of humans.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-        <div class="choose-card h-100">
-          <i class="fa fa-star fa-5x text-primary mb-4"></i>
-          <h4>Nature & Environment</h4>
-          <p>Honoring remarkable achievements in environmental conservation, sustainability, and exploration, inspiring global efforts to protect and celebrate our planet.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Feature End -->
 
 
     <!-- Project Start -->
     <div class="container-fluid mt-5">
         <div class="container mt-5">
             <div class="row g-0">
+                <!-- Left Banner -->
                 <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
                     <div class="d-flex flex-column justify-content-center bg-primary h-100 p-5">
-                        <h1 class="text-white mb-5">Our Latest <span
-                                class="text-uppercase text-primary bg-light px-2">Projects</span></h1>
-                        <h4 class="text-white mb-0"><span class="display-1">6</span> of our latest projects</h4>
+                        <h1 class="text-white mb-4">
+                            Celebrating Lives in <span class="text-uppercase text-primary bg-light px-2">Our
+                                Gallery</span>
+                        </h1>
+                        <p class="text-white mb-4">
+                            Witness moments of achievement and celebration as individuals are honored for their
+                            extraordinary talents, remarkable milestones, and inspiring contributions.
+                            Each photograph captures the pride, joy, and determination behind every record and award.
+                        </p>
+                        <h4 class="text-white mb-0">
+                            <span class="display-1">{{ $galleries->count() }}</span> memorable achievements captured
+                        </h4>
                     </div>
                 </div>
+
+                <!-- Right Gallery Grid -->
                 <div class="col-lg-7">
                     <div class="row g-0">
-                        <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.2s">
-                            <div class="project-item position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="img/project-1.jpg" alt="">
-                                <a class="project-overlay text-decoration-none" href="#!">
-                                    <h4 class="text-white">Kitchen</h4>
-                                    <small class="text-white">72 Projects</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="project-item position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="img/project-2.jpg" alt="">
-                                <a class="project-overlay text-decoration-none" href="#!">
-                                    <h4 class="text-white">Bathroom</h4>
-                                    <small class="text-white">67 Projects</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.4s">
-                            <div class="project-item position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="img/project-3.jpg" alt="">
-                                <a class="project-overlay text-decoration-none" href="#!">
-                                    <h4 class="text-white">Bedroom</h4>
-                                    <small class="text-white">53 Projects</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
-                            <div class="project-item position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="img/project-4.jpg" alt="">
-                                <a class="project-overlay text-decoration-none" href="#!">
-                                    <h4 class="text-white">Living Room</h4>
-                                    <small class="text-white">33 Projects</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.6s">
-                            <div class="project-item position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="img/project-5.jpg" alt="">
-                                <a class="project-overlay text-decoration-none" href="#!">
-                                    <h4 class="text-white">Furniture</h4>
-                                    <small class="text-white">87 Projects</small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.7s">
-                            <div class="project-item position-relative overflow-hidden">
-                                <img class="img-fluid w-100" src="img/project-6.jpg" alt="">
-                                <a class="project-overlay text-decoration-none" href="#!">
-                                    <h4 class="text-white">Rennovation</h4>
-                                    <small class="text-white">69 Projects</small>
-                                </a>
-                            </div>
-                        </div>
+                        @foreach($galleries as $index => $gallery)
+                                            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="{{ 0.2 + ($index * 0.1) }}s">
+                                                <div class="project-item position-relative overflow-hidden" style="margin:5px 0;">
+                                                    <!-- Image -->
+                                                    <img src="{{ asset('storage/' . $gallery->img) }}"
+                                                        style="width:100%; height:200px; object-fit:cover; display:block;">
+
+                                                    <a class="project-overlay text-decoration-none d-flex flex-column justify-content-center align-items-center"
+                                                        href="#!" style="position:absolute; top:0; left:0; width:100%; height:100%; 
+                              background:rgba(0,0,0,0.6); color:#fff; opacity:0; transition:0.3s;
+                              padding:10px; box-sizing:border-box; text-align:center;">
+                                                        <h4 style="width:100%; margin:0; 
+                                   overflow:hidden; 
+                                   word-break:break-word; 
+                                   font-size:1rem; line-height:1.2em; color:#fff;">
+                                                            {{ $gallery->title }}
+                                                        </h4>
+
+                                                    </a>
+                                                </div>
+                                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -360,86 +316,135 @@ As we continue our journey, we remain dedicated to the principle that “All is 
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="mb-5"> Our <span class="text-uppercase text-primary bg-light px-2">Excellent Records</span></h1>
-                    At <strong>Book of Record</strong>, we take pride in honoring exceptional talents, innovative ideas, and inspiring achievements that make a difference in the world. Our record categories represent diverse fields of excellence where individuals and organizations have redefined boundaries.
-                        </p>
-                     <p class="mb-5">
-          From creativity and innovation to courage and leadership, every record recognized here is a story of determination and brilliance. Together, these achievements form a legacy of human potential that motivates generations to dream beyond limits.
+                    <h1 class="mb-5"> Our <span class="text-uppercase text-primary bg-light px-2">Excellent
+                            Records</span></h1>
+                    At <strong>Book of Record</strong>, we take pride in honoring exceptional talents, innovative ideas,
+                    and inspiring achievements that make a difference in the world. Our record categories represent
+                    diverse fields of excellence where individuals and organizations have redefined boundaries.
+                    </p>
+                    <p class="mb-5">
+                        From creativity and innovation to courage and leadership, every record recognized here is a
+                        story of determination and brilliance. Together, these achievements form a legacy of human
+                        potential that motivates generations to dream beyond limits.
                     </p>
                 </div>
                 <div class="col-lg-7">
                     <div class="row g-0">
-                        <div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
-                            <div class="service-item h-100 d-flex flex-column justify-content-center bg-primary">
-                                <a href="#!" class="service-img position-relative mb-4">
-                                    <img class="img-fluid w-100" src="img/service-1.jpg" alt="">
-                                    <h3>Interior Design</h3>
-                                </a>
-                                <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                                    stet diam sed stet lorem.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 wow fadeIn" data-wow-delay="0.4s">
-                            <div class="service-item h-100 d-flex flex-column justify-content-center bg-light">
-                                <a href="#!" class="service-img position-relative mb-4">
-                                    <img class="img-fluid w-100" src="img/service-2.jpg" alt="">
-                                    <h3>Implement</h3>
-                                </a>
-                                <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                                    stet diam sed stet lorem.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 wow fadeIn" data-wow-delay="0.6s">
-                            <div class="service-item h-100 d-flex flex-column justify-content-center bg-light">
-                                <a href="#!" class="service-img position-relative mb-4">
-                                    <img class="img-fluid w-100" src="img/service-3.jpg" alt="">
-                                    <h3>Renovation</h3>
-                                </a>
-                                <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                                    stet diam sed stet lorem.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 wow fadeIn" data-wow-delay="0.8s">
-                            <div class="service-item h-100 d-flex flex-column justify-content-center bg-primary">
-                                <a href="#!" class="service-img position-relative mb-4">
-                                    <img class="img-fluid w-100" src="img/service-4.jpg" alt="">
-                                    <h3>Commercial</h3>
-                                </a>
-                                <p class="mb-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
-                                    stet diam sed stet lorem.</p>
-                            </div>
-                        </div>
+                        @foreach($records as $index => $record)
+                                            <div class="col-md-6 wow fadeIn" data-wow-delay="{{ 0.2 + ($index * 0.2) }}s">
+                                                <div
+                                                    class="service-item h-100 d-flex flex-column justify-content-center {{ $index % 2 == 0 ? 'bg-primary' : 'bg-light' }}">
+                                                    <a href="#!" class="service-img position-relative mb-4">
+                                                        <img class="img-fluid w-100" src="{{ asset('storage/' . $record->image) }}"
+                                                            alt="{{ $record->name }}" style="height:200px; object-fit:cover;">
+                                                                   <h3 style="font-size:1.25rem;
+                                                                        line-height:1.2em;
+                                                                        max-height:2.4em; /* 2 lines */
+                                                                        display:-webkit-box;
+                                                                        -webkit-line-clamp:2;
+                                                                        -webkit-box-orient:vertical;
+                                                                        overflow:hidden;
+                                                                        word-break:break-word;
+                                                                        text-overflow:ellipsis;">
+                                                                    {{ $record->name }}
+                                                                </h3>
+                                                    </a>
+                                                    <p
+                                                        style="max-height:4.5em; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;">
+                                                        {{ $record->description }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                        @endforeach
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
 
-    <!-- Newsletter Start -->
-    <div class="container-fluid bg-primary newsletter p-0">
-        <div class="container p-0">
-            <div class="row g-0 align-items-center">
-                <div class="col-md-5 ps-lg-0 text-start wow fadeIn" data-wow-delay="0.2s">
-                    <img class="img-fluid w-100" src="img/newsletter.jpg" alt="">
+
                 </div>
-                <div class="col-md-7 py-5 newsletter-text wow fadeIn" data-wow-delay="0.5s">
-                    <div class="p-5">
-                        <h1 class="mb-5">Subscribe the <span
-                                class="text-uppercase text-primary bg-white px-2">Newsletter</span></h1>
-                        <div class="position-relative w-100 mb-2">
-                            <input class="form-control border-0 w-100 ps-4 pe-5" type="text"
-                                placeholder="Enter Your Email" style="height: 60px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-2 me-2"><i
-                                    class="fa fa-paper-plane text-primary fs-4"></i></button>
+            </div>
+        </div>
+        <!-- Service End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid text-dark-50 footer pt-5" style="background-color: #c7b16b;">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                        <a href="{{ route('home') }}" class="d-inline-block mb-3">
+                            <h1 class="text-dark">BOOK OF RECORD</h1>
+                        </a>
+                        <p class="mb-0" style="color: #4d194d;">
+                            Book of Record is a global platform dedicated to recognizing extraordinary achievements and
+                            inspiring individuals to push beyond their limits.
+                            We honor talents, innovations, and milestones that make a difference celebrating every story
+                            of
+                            determination, creativity, and excellence.
+                            Our mission is to document greatness and motivate others to dream big, act bold, and leave a
+                            lasting impact on the world.
+                        </p>
+
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+
+                    </div>
+                    <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+                        <h5 class="text-dark mb-4">Our Highlights</h5>
+                        <ul class="list-unstyled" style="color: #4d194d;">
+                            <li><i class="fa-solid fa-star me-2"></i>Recognizing Extraordinary Achievements</li>
+                            <li><i class="fa-solid fa-trophy me-2"></i>Inspiring Individuals Worldwide</li>
+                            <li><i class="fa-solid fa-book me-2"></i>Documenting Talents and Milestones</li>
+                            <li><i class="fa-solid fa-lightbulb me-2"></i>Motivating Creativity and Excellence</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
+                        <h5 class="text-dark mb-4">Quick Links</h5>
+                        <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                            href="{{ route('home') }}">
+                            <i class="fa-solid fa-house me-2"></i> Home
+                        </a>
+
+                        <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                            href="{{ route('about') }}">
+                            <i class="fa-solid fa-circle-info me-2"></i> About Us
+                        </a>
+
+                        <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                            href="{{ route('gallery') }}">
+                            <i class="fa-solid fa-images me-2"></i> Gallery
+                        </a>
+
+                        <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                            href="{{ route('category') }}">
+                            <i class="fa-solid fa-trophy me-2"></i> Inspiring Records
+                        </a>
+
+                        <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
+                            href="{{ route('contact.index') }}">
+                            <i class="fa-solid fa-envelope me-2"></i> Contact
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container wow fadeIn" data-wow-delay="0.1s">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            <p class="footer-text" style="margin-top:15px;">
+                                Copyright &copy; 2025
+                                <a href="http://astrasoftwaresolutions.com/" target="_blank"
+                                    style="color: #4d194d;">ASTRA
+                                    SOFTWARE SOLUTIONS</a> | All rights reserved
+                            </p>
                         </div>
-                        <p class="mb-0">Diam sed sed dolor stet amet eirmod</p>
+                        <div class="col-md-6 text-center text-md-end">
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Newsletter End -->
+        <!-- Footer End -->
 
     </div>
     </div>
@@ -448,10 +453,10 @@ As we continue our journey, we remain dedicated to the principle that “All is 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
- <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
-<script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
-<script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
     <script>
         const carousel = $(".owl-carousel");
@@ -461,7 +466,7 @@ As we continue our journey, we remain dedicated to the principle that “All is 
             loop: true,
             margin: 10,
             nav: false,
-            dot:true,
+            dot: true,
             items: 1,
             autoplay: true,
             autoplayTimeout: 3000,
@@ -481,23 +486,30 @@ As we continue our journey, we remain dedicated to the principle that “All is 
         });
 
         updateDots(0);
-    </script>
-    <script>
+
         document.querySelectorAll('.owl-carousel .item img').forEach(img => {
             img.addEventListener('mouseover', () => img.style.transform = 'scale(1.05)');
             img.addEventListener('mouseout', () => img.style.transform = 'scale(1)');
         });
+
+        // Hide spinner when page is fully loaded
+        window.addEventListener('load', function () {
+            const spinner = document.getElementById('spinner');
+            if (spinner) {
+                spinner.classList.remove('show'); // Remove "show" class
+                spinner.style.display = 'none';   // Ensure it's hidden
+            }
+        });
+
+        document.querySelectorAll('.project-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.querySelector('.project-overlay').style.opacity = '1';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.querySelector('.project-overlay').style.opacity = '0';
+            });
+        });
     </script>
-    <script>
-    // Hide spinner when page is fully loaded
-    window.addEventListener('load', function() {
-        const spinner = document.getElementById('spinner');
-        if(spinner) {
-            spinner.classList.remove('show'); // Remove "show" class
-            spinner.style.display = 'none';   // Ensure it's hidden
-        }
-    });
-</script>
 
 </body>
 

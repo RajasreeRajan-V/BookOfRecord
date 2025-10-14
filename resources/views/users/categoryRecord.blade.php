@@ -10,12 +10,12 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-
+  <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Space+Grotesk&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -46,8 +46,8 @@
     <!-- Navbar Start -->
     <div class="container-fluid sticky-top">
         <div class="container">
-             <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
-                <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center">
+            <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
+                <a href="index.html" class="navbar-brand d-flex align-items-center">
                     <img src="{{ asset('img/logo.png') }}" alt="Book of Record Logo" class="logo-img me-3" style="height:50px;">
                     <span style="
                         font-family: 'Space Grotesk', sans-serif; 
@@ -63,6 +63,8 @@
                     </span>
                 </a>
 
+
+
                 <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
                     data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -74,17 +76,6 @@
                         <a href="{{ route('about') }}" class="nav-item nav-link">About Us</a>
                         <a href="{{ route('gallery') }}" class="nav-item nav-link">Gallery</a>
                         <a href="{{ route('category') }}" class="nav-item nav-link">Inspiring Records</a>
-                       <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
-                            <div class="dropdown-menu bg-light mt-2">
-                                @foreach($categorious as $category)
-                                    <a href="{{ route('category.record', $category->id) }}" class="dropdown-item">
-                                        {{ $category->name }}
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-
                         <a href="{{ route('contact.index') }}" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
@@ -98,17 +89,18 @@
     <div class="container-fluid pb-5 bg-primary hero-header">
         <div class="container py-5">
             <div class="row g-3 align-items-center">
-                <div class="col-lg-6 text-center text-lg-start">
+                 <div class="col-lg-6 text-center text-lg-start">
                         <h1 class="mb-0 animated slideInLeft" 
                             style="white-space: nowrap;color: white;">
-                            About Us
+                            Records in {{ $category->name }}
                         </h1>
                     </div>
                 <div class="col-lg-6 animated slideInRight">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
-                            <li class="breadcrumb-item"><a class="text-primary" href="{{route('home')}}">Home</a></li>
-                            <li class="breadcrumb-item text-secondary active" aria-current="page">About</li>
+                            <li class="breadcrumb-item"><a class="text-primary" href="{{ route('home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-primary" href="{{ route('category')}}">Category</a></li>
+                            <li class="breadcrumb-item text-secondary active" aria-current="page">{{ $category->name }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -118,80 +110,43 @@
     <!-- Hero End -->
 
 
-
-    <!-- About Start -->
-    <div class="container-fluid py-5 about-section">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6">
-                    <div class="row">
-                        @if($about)
-                            <div class="col-6 wow fadeIn" data-wow-delay="0.1s"
-                                style="border: 3px solid #4d194d; border-radius: 3px;">
-                                <img class="img-fluid" src="{{ asset('storage/' . $about->img1) }}" alt="">
-                            </div>
-                            <div class="col-6 wow fadeIn" data-wow-delay="0.3s"
-                                style="border: 3px solid #c7b16b; border-radius: 5px;">
-                                <img class="img-fluid h-75" src="{{ asset('storage/' . $about->img2) }}" alt="">
-                                <div class="h-25 d-flex align-items-center text-center bg-primary px-4">
-                                    <h4 class="text-white lh-base mb-0">{{ $about->title }}</h4>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    @if($about)
-                        <h1 class="mb-5"><span class="text-uppercase text-primary bg-light px-2">About
-                                Us</span>{{ $about->title }}</h1>
-                        <p class="mb-4">{{ $about->desc }}</p>
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>{{ $about->tag1 }}</h6>
-                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>{{ $about->tag2 }}</h6>
-                            </div>
-                            <div class="col-sm-6">
-                                <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>{{ $about->tag3 }}</h6>
-                                <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>{{ $about->tag4 }}</h6>
-                            </div>
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About End -->
-
-
-<!-- Team Start -->
-<div class="container-fluid bg-light py-5">
+  <!-- Records Section -->
     <div class="container py-5">
-        <h1 class="mb-5">Our <span class="text-uppercase text-primary bg-light px-2">Reputative Recorders</span></h1>
-        <div class="row g-4">
-            @forelse($records as $key => $record)
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="{{ 0.1 + ($key * 0.2) }}s">
-                    <div class="team-item position-relative overflow-hidden" style="border-radius: 5px; overflow: hidden;">
-                        <img class="img-fluid w-100"
-                             src="{{ $record->image ? asset('storage/' . $record->image) : asset('img/default-team.jpg') }}"
-                             alt="{{ $record->name }}"
-                             style="height: 320px; width: 100%; object-fit: cover; transition: transform 0.4s ease;">
-                        <div class="team-overlay" style="transition: all 0.3s ease;">
-                            <small class="mb-2"><i class="fas fa-medal"></i></small>
-                            <h4 class="lh-base text-light">{{ $record->name }}</h4>
-                            <div class="d-flex justify-content-center">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @empty
-                <p class="text-center text-muted">No records available at the moment.</p>
-            @endforelse
-        </div>
-    </div>
-</div>
-<!-- Team End -->
+        <h2 class="mb-4">{{ $category->name }} - Records</h2>
+        <p>{{ $category->description }}</p>
 
+ <div class="row gy-3 gx-2">
+    @forelse($records as $record)
+        <div class="col-6 col-md-4">
+            <a href="{{ route('category.single.record',$record->id) }}" style="text-decoration: none; color: inherit;">
+                <div class="choose-card gallery-card p-3" style="border:2px solid #4d194d; border-radius:8px;">
+                    <img src="{{ asset('storage/' . $record->image) }}" 
+                        class="img-fluid mb-2"
+                        style="height:150px; width:100%; object-fit:contain; border-radius:4px; background-color:#f8f8f8;">
+
+                    <h6 class="mb-1"
+                        style="max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word;">
+                        {{ $record->name }}
+                    </h6>
+                    <p class="mb-1" style="font-size:0.85rem; color:#4d194d;">
+                        <i class="fas fa-medal"></i> {{ $record->record_no }}
+                    </p>
+                    <p class="text-muted mb-0" style="font-size:0.85rem;">
+                        {{ Str::limit($record->description, 80) }}
+                    </p>
+                </div>
+            </a>
+        </div>
+    @empty
+        <div class="col-12">
+            <p class="text-muted">No records found under this category.</p>
+        </div>
+    @endforelse
+</div>
+
+    </div>
+
+    
 <!-- Footer Start -->
 <div class="container-fluid text-dark-50 footer pt-5" style="background-color: #c7b16b;">
     <div class="container py-5">

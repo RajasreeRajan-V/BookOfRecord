@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>BOOK OF RECORD - Interior Design Website Template Free</title>
+  <title>BOOK OF RECORD</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Space+Grotesk&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Icon Font Stylesheet -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -68,7 +69,18 @@
     </div>
   </div>
   <!-- Hero End -->
-
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+         style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
+        
+        <!-- Success Icon -->
+        <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+        
+        <div>{{ session('success') }}</div>
+        
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
   <!-- Modal Start -->
   <div class="modal fade" id="aboutUsModal" tabindex="-1" aria-labelledby="aboutUsModalLabel" aria-hidden="true">
@@ -123,7 +135,8 @@
           <div class="col-6 col-md-4 wow fadeIn" data-wow-delay="0.1s">
             <div class="gallery-card p-3" style="border: 2px solid #4d194d; border-radius: 5px; padding: 8px;">
               <img class="img-fluid" src="{{ asset('storage/' . $gallery->img) }}" alt="{{ $gallery->title }}"
-                style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px;">
+    style="width: 100%; height: 150px; object-fit: contain; border-radius: 4px; background-color: #f8f8f8;">
+
 
               <h6 class="mb-1 mt-1" style="font-weight:600; overflow-wrap: break-word;">
                 {{ $gallery->title }}
@@ -140,13 +153,14 @@
                   <i class="fas fa-edit"></i> Edit
                 </button>
 
-                <form action="{{ route('admin.gallery.destroy', $gallery->id) }}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-sm btn-outline-danger">
-                    <i class="fas fa-trash"></i> Delete
-                  </button>
-                </form>
+                <form class="delete-gallery-form" action="{{ route('admin.gallery.destroy', $gallery->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="button" class="btn btn-sm btn-outline-danger delete-btn">
+                  <i class="fas fa-trash"></i> Delete
+                </button>
+              </form>
+
               </div>
             </div>
           </div>
@@ -222,6 +236,32 @@
 
   <!-- Template Javascript -->
   <script src="{{asset('js/main.js')}}"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const form = this.closest('form');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+});
+</script>
+
 </body>
 
 </html>

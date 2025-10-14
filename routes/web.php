@@ -12,25 +12,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-
-
-Route::get('/test', function () {
-    return view('users.test');
-});
-
-Route::get('/', function () {return view('users.index');})->name('home');
+Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/about_us',[UserController::class,'about'])->name('about');
 Route::get('/category',[UserController::class,'category'])->name('category');
 Route::get('/gallery',[UserController::class,'gallery'])->name('gallery');
-Route::get('/records',[UserController::class,'records'])->name('records');
+// Route::get('/records',[UserController::class,'records'])->name('records');
 Route::get('/single',[UserController::class,'single'])->name('single');
-
+Route::get('/category/{id}', [UserController::class, 'showRecord'])->name('category.record');
+Route::get('/records/{id}', [UserController::class, 'showSingleRecord'])->name('category.single.record');
 Route::resource('contact', ContactUsController::class);
 
 
