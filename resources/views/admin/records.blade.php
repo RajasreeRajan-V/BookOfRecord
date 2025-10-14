@@ -10,6 +10,7 @@
 
   <!-- Favicon -->
   <link href="img/favicon.ico" rel="icon">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,8 +47,11 @@
     <div class="container py-5">
       <div class="row g-3 align-items-center">
         <div class="col-lg-6 text-center text-lg-start">
-          <h1 class="display-1 mb-0 animated slideInLeft">Records</h1>
-        </div>
+                        <h1 class="mb-0 animated slideInLeft" 
+                            style="white-space: nowrap;color: white;">
+                            Records
+                        </h1>
+                    </div>
         <div class="col-lg-6 animated slideInRight">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
@@ -139,37 +143,51 @@
 
         @forelse($records as $record)
           <div class="col-6 col-md-4 wow fadeIn" data-wow-delay="0.1s">
-            <div class="choose-card gallery-card" style="border: 2px solid #4d194d; border-radius: 5px; padding: 8px;">
-              <img class="img-fluid" src="{{ asset('storage/' . $record->image) }}" alt="{{ $record->name }}"
-                style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px;">
+           <div class="choose-card gallery-card d-flex flex-column justify-content-between" 
+     style="border: 2px solid #4d194d; border-radius: 5px; padding: 8px; height: 100%;">
+  
+  <!-- Image -->
+  <img class="img-fluid mb-2" src="{{ asset('storage/' . $record->image) }}" alt="{{ $record->name }}"
+       style="width: 100%; height: 150px; object-fit:contain; border-radius: 4px; background-color:#f8f8f8;">
 
-              <h6 class="mb-0 mt-1"
-                style="font-weight:600;max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word;">
-                {{ $record->name }}
-              </h6>
-              <p class="text-muted mb-1"
-                style="font-size:0.85rem; overflow-wrap: break-word; word-break: break-word; max-height: 6em;color:#4d194d;">
-                {{ $record->record_no }} | {{ $record->category->name ?? 'No Category' }}
-              </p><i class="fas fa-medal"></i>
-              <p class="mb-0"
-                style="font-size:0.85rem; overflow-wrap: break-word; word-break: break-word; max-height: 6em; /* optional max-height */">
-                {{ $record->description }}
-              </p>
-              <div class="d-flex justify-content-center gap-2">
-                <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#editRecordModal{{ $record->id }}">
-                  <i class="fas fa-edit"></i> Edit
-                </button>
+  <!-- Name -->
+  <h6 class="mb-1 mt-1" style="font-weight:600; word-break: break-word;">
+    {{ $record->name }}
+  </h6>
 
-                <form action="{{ route('admin.adminRecord.destroy', $record->id) }}" method="POST" class="deleteForm">
-                  @csrf
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-sm btn-outline-danger">
-                    <i class="fas fa-trash"></i> Delete
-                  </button>
-                </form>
-              </div>
-            </div>
+  <!-- Record No & Category -->
+  <p class="text-muted mb-1" style="font-size:0.85rem; word-break: break-word; color:#4d194d;">
+    {{ $record->record_no }} | {{ $record->category->name ?? 'No Category' }}
+  </p>
+
+  <!-- Medal icon -->
+  <p class="mb-1"><i class="fas fa-medal"></i></p>
+
+  <!-- Description -->
+  <p class="mb-2" style="font-size:0.85rem; word-break: break-word; overflow-wrap: break-word;">
+    {{ $record->description }}
+  </p>
+
+  <!-- Buttons -->
+  <div class="d-flex justify-content-center gap-2 mt-auto">
+    <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+            data-bs-target="#editRecordModal{{ $record->id }}">
+      <i class="fas fa-edit"></i> Edit
+    </button>
+
+    <form action="{{ route('admin.adminRecord.destroy', $record->id) }}" method="POST" class="deleteForm">
+  @csrf
+  @method('DELETE')
+  <button type="button" class="btn btn-sm btn-outline-danger delete-btn">
+    <i class="fas fa-trash"></i> Delete
+  </button>
+</form>
+
+  </div>
+
+</div>
+
+
           </div>
 
           <!-- Edit Record Modal -->
@@ -258,6 +276,30 @@
 
   <!-- Template Javascript -->
   <script src="{{asset('js/main.js')}}"></script>
+  <script>
+  // Select all delete buttons
+  document.querySelectorAll('.delete-btn').forEach(function(button){
+    button.addEventListener('click', function(e){
+      e.preventDefault();
+      const form = this.closest('form');
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          form.submit(); // submit the form if confirmed
+        }
+      })
+    });
+  });
+</script>
+
 </body>
 
 </html>

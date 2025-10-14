@@ -58,7 +58,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
                 <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center">
-                    <img src="{{ asset('img/logo.png') }}" alt="Book of Record Logo" class="logo-img me-3" style="height:50px;">
+                    <img src="{{ asset('img/logo.png') }}" alt="Book of Record Logo" class="logo-img me-3"
+                        style="height:50px;">
                     <span style="
                         font-family: 'Space Grotesk', sans-serif; 
                         font-weight: 800; 
@@ -84,7 +85,7 @@
                         <a href="{{ route('about') }}" class="nav-item nav-link">About Us</a>
                         <a href="{{ route('gallery') }}" class="nav-item nav-link">Gallery</a>
                         <a href="{{ route('category') }}" class="nav-item nav-link">Inspiring Records</a>
-                       <div class="nav-item dropdown">
+                        <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                             <div class="dropdown-menu bg-light mt-2">
                                 @foreach($categorious as $category)
@@ -282,26 +283,26 @@
                 <div class="col-lg-7">
                     <div class="row g-0">
                         @foreach($galleries as $index => $gallery)
-                                            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="{{ 0.2 + ($index * 0.1) }}s">
-                                                <div class="project-item position-relative overflow-hidden" style="margin:5px 0;">
-                                                    <!-- Image -->
-                                                    <img src="{{ asset('storage/' . $gallery->img) }}"
-                                                        style="width:100%; height:200px; object-fit:cover; display:block;">
+                            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="{{ 0.2 + ($index * 0.1) }}s">
+                                <div class="project-item position-relative overflow-hidden" style="margin:5px 0;">
+                                    <!-- Image -->
+                                    <img src="{{ asset('storage/' . $gallery->img) }}"
+                                        style="width:100%; height:200px; object-fit:cover; display:block;">
 
-                                                    <a class="project-overlay text-decoration-none d-flex flex-column justify-content-center align-items-center"
-                                                        href="#!" style="position:absolute; top:0; left:0; width:100%; height:100%; 
-                              background:rgba(0,0,0,0.6); color:#fff; opacity:0; transition:0.3s;
-                              padding:10px; box-sizing:border-box; text-align:center;">
-                                                        <h4 style="width:100%; margin:0; 
-                                   overflow:hidden; 
-                                   word-break:break-word; 
-                                   font-size:1rem; line-height:1.2em; color:#fff;">
-                                                            {{ $gallery->title }}
-                                                        </h4>
+                                    <a class="project-overlay text-decoration-none d-flex flex-column justify-content-center align-items-center"
+                                        href="#!" style="position:absolute; top:0; left:0; width:100%; height:100%; 
+                                                                background:rgba(0,0,0,0.6); color:#fff; opacity:0; transition:0.3s;
+                                                                padding:10px; box-sizing:border-box; text-align:center;">
+                                        <h4 style="width:100%; margin:0; 
+                                                                        overflow:hidden; 
+                                                                        word-break:break-word; 
+                                                                        font-size:1rem; line-height:1.2em; color:#fff;">
+                                            {{ $gallery->title }}
+                                        </h4>
 
-                                                    </a>
-                                                </div>
-                                            </div>
+                                    </a>
+                                </div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -331,30 +332,30 @@
                 <div class="col-lg-7">
                     <div class="row g-0">
                         @foreach($records as $index => $record)
-                                            <div class="col-md-6 wow fadeIn" data-wow-delay="{{ 0.2 + ($index * 0.2) }}s">
-                                                <div
-                                                    class="service-item h-100 d-flex flex-column justify-content-center {{ $index % 2 == 0 ? 'bg-primary' : 'bg-light' }}">
-                                                    <a href="#!" class="service-img position-relative mb-4">
-                                                        <img class="img-fluid w-100" src="{{ asset('storage/' . $record->image) }}"
-                                                            alt="{{ $record->name }}" style="height:200px; object-fit:cover;">
-                                                                   <h3 style="font-size:1.25rem;
-                                                                        line-height:1.2em;
-                                                                        max-height:2.4em; /* 2 lines */
-                                                                        display:-webkit-box;
-                                                                        -webkit-line-clamp:2;
-                                                                        -webkit-box-orient:vertical;
-                                                                        overflow:hidden;
-                                                                        word-break:break-word;
-                                                                        text-overflow:ellipsis;">
-                                                                    {{ $record->name }}
-                                                                </h3>
-                                                    </a>
-                                                    <p
-                                                        style="max-height:4.5em; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;">
-                                                        {{ $record->description }}
-                                                    </p>
-                                                </div>
-                                            </div>
+                            <div class="col-md-6 wow fadeIn" data-wow-delay="{{ 0.2 + ($index * 0.2) }}s">
+                                <div
+                                    class="service-item h-100 d-flex flex-column justify-content-center {{ $index % 2 == 0 ? 'bg-primary' : 'bg-light' }}">
+                                    <a href="#!" class="service-img position-relative mb-4">
+                                        <img class="img-fluid w-100" src="{{ asset('storage/' . $record->image) }}"
+                                            alt="{{ $record->name }}" style="height:200px; object-fit:cover;">
+                                        <h3 style="font-size:1.25rem;
+                                                                            line-height:1.2em;
+                                                                            max-height:2.4em; /* 2 lines */
+                                                                            display:-webkit-box;
+                                                                            -webkit-line-clamp:2;
+                                                                            -webkit-box-orient:vertical;
+                                                                            overflow:hidden;
+                                                                            word-break:break-word;
+                                                                            text-overflow:ellipsis;">
+                                            {{ $record->name }}
+                                        </h3>
+                                    </a>
+                                    <p
+                                        style="max-height:4.5em; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;">
+                                        {{ $record->description }}
+                                    </p>
+                                </div>
+                            </div>
                         @endforeach
                     </div>
 

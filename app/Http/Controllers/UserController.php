@@ -21,7 +21,7 @@ class UserController extends Controller
    public function about()
    {
        $about = AboutUs::latest()->first();
-       $records = Record::latest()->take(4)->get();
+       $records = Record::first()->take(4)->get();
        $categorious = Category::all();
        return view('users.about_us',compact('about','records','categorious'));
    }

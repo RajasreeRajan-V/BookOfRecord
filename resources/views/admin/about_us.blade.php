@@ -55,12 +55,11 @@
     <div class="container-fluid pb-5 bg-primary hero-header position-relative">
         <div class="container py-5">
             <div class="row g-3 align-items-center">
-               <div class="col-lg-6 text-center text-lg-start">
-                        <h1 class="mb-0 animated slideInLeft" 
-                            style="white-space: nowrap;color: white;">
-                            About Us
-                        </h1>
-                    </div>
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h1 class="mb-0 animated slideInLeft" style="white-space: nowrap;color: white;">
+                        About Us
+                    </h1>
+                </div>
                 <div class="col-lg-6 animated slideInRight">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
@@ -230,18 +229,18 @@
             </div>
         </div>
     @endif
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
-         style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
-        
-        <!-- Success Icon -->
-        <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
-        
-        <div>{{ session('success') }}</div>
-        
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+            style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
+
+            <!-- Success Icon -->
+            <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+
+            <div>{{ session('success') }}</div>
+
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <!-- About Start -->
     <div class="container-fluid py-5 about-section">

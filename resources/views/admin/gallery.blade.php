@@ -47,8 +47,11 @@
     <div class="container py-5">
       <div class="row g-3 align-items-center">
         <div class="col-lg-6 text-center text-lg-start">
-          <h1 class="display-1 mb-0 animated slideInLeft">Gallery</h1>
-        </div>
+                        <h1 class="mb-0 animated slideInLeft" 
+                            style="white-space: nowrap;color: white;">
+                            Gallery
+                        </h1>
+                    </div>
         <div class="col-lg-6 animated slideInRight">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">

@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Admin | Book Of Record</title>
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -34,7 +35,7 @@
   <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -47,19 +48,6 @@
           <a href="{{ route('admin.contactUs.index') }}" class="nav-link">Contact</a>
         </li>
       </ul>
-
-      <!-- SEARCH FORM -->
-      <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-
 
     </nav>
     <!-- /.navbar -->
@@ -160,7 +148,6 @@
               </ul>
             </li>
 
-
             <li class="nav-item">
               <a href="{{ route('admin.gallery.index') }}" class="nav-link">
                 <i class="nav-icon far fa-image"></i>
@@ -178,16 +165,16 @@
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{ route('logout') }}" class="nav-link"
-              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              <i class="fas fa-sign-out-alt"></i>
-              <p>Log Out</p>
-            </a>
+              <a href="{{ route('logout') }}" class="nav-link"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i>
+                <p>Log Out</p>
+              </a>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
-            </form>
-        </li>
+              </form>
+            </li>
 
           </ul>
         </nav>
@@ -229,7 +216,8 @@
                   <p>Contact Us</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="ion ion-chatbubble-working"></i>
+
                 </div>
                 <a href="{{ route('admin.contactUs.index') }}" class="small-box-footer">
                   More info <i class="fas fa-arrow-circle-right"></i>
@@ -245,7 +233,7 @@
                   <p>Gallery</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                  <i class="ion ion-images"></i>
                 </div>
                 <a href="{{ route('admin.gallery.index') }}" class="small-box-footer">
                   More info <i class="fas fa-arrow-circle-right"></i>
@@ -261,7 +249,7 @@
                   <p>Categories</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-person-add"></i>
+                  <i class="fas fa-trophy"></i>
                 </div>
                 <a href="{{ route('admin.adminCategory.index') }}" class="small-box-footer">
                   More info <i class="fas fa-arrow-circle-right"></i>
@@ -278,7 +266,7 @@
                   <p>About Us</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
+                  <i class="fas fa-info-circle"></i>
                 </div>
                 <a href="{{ route('admin.aboutUs.index') }}" class="small-box-footer">
                   More info <i class="fas fa-arrow-circle-right"></i>

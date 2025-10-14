@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -94,7 +95,7 @@ class ContactController extends Controller
         // Send email (example)
         Mail::raw($request->message, function($mail) use ($contact) {
             $mail->to($contact->email)
-                ->subject("Reply from K-Factory Interiors");
+                ->subject("Reply from Book of Records");
         });
         $contact->save();
         return redirect()->back()->with('success', 'Reply sent successfully.');

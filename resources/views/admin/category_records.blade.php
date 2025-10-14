@@ -46,11 +46,10 @@
         <div class="container py-5">
             <div class="row g-3 align-items-center">
                 <div class="col-lg-6 text-center text-lg-start">
-                        <h1 class="mb-0 animated slideInLeft" 
-                            style="white-space: nowrap;color: white;">
-                             {{ $category->name }}
-                        </h1>
-                    </div>
+                    <h1 class="mb-0 animated slideInLeft" style="white-space: nowrap;color: white;">
+                        {{ $category->name }}
+                    </h1>
+                </div>
                 <div class="col-lg-6 animated slideInRight">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
@@ -67,19 +66,18 @@
         </div>
     </div>
     <!-- Hero End -->
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
-         style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
-        
-        <!-- Success Icon -->
-        <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
-        
-        <div>{{ session('success') }}</div>
-        
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-    <!-- Records Section -->
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+            style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
+
+            <!-- Success Icon -->
+            <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+
+            <div>{{ session('success') }}</div>
+
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="container py-5">
         <h2 class="mb-4">{{ $category->name }} - Records</h2>
         <p>{{ $category->description }}</p>
@@ -87,20 +85,29 @@
         <div class="row gy-3 gx-2">
             @forelse($records as $record)
                 <div class="col-6 col-md-4">
-                    <div class="choose-card gallery-card p-3" style="border:2px solid #4d194d; border-radius:8px;">
+                    <div class="choose-card gallery-card p-3 d-flex flex-column justify-content-between"
+                        style="border:2px solid #4d194d; border-radius:8px; height:100%;">
+
+                        <!-- Image -->
                         <img src="{{ asset('storage/' . $record->image) }}" alt="{{ $record->name }}" class="img-fluid mb-2"
-                            style="height:150px; width:100%; object-fit:cover; border-radius:4px;">
-                        <h6 class="mb-1"
-                            style="max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word;">
-                            {{ $record->name }}
-                        </h6>
-                        <p class="mb-1"
-                            style="font-size:0.85rem; overflow-wrap: break-word; word-break: break-word; max-height: 6em;color:#4d194d;">
-                            {{ $record->record_no }}</p><i class="fas fa-medal"></i>
-                        <p class="text-muted mb-0"
-                            style="font-size:0.85rem; overflow-wrap: break-word; word-break: break-word; max-height: 6em; /* optional max-height */">
-                            {{ $record->description }}
-                        </p>
+                            style="height:150px; width:100%; object-fit:contain; border-radius:4px; background:#f9f9f9;">
+
+                        <!-- Record Details -->
+                        <div style="flex-grow:1;">
+                            <h6 class="mb-1" style="font-weight:600; word-break:break-word;">
+                                {{ $record->name }}
+                            </h6>
+
+                            <p class="mb-1" style="font-size:0.85rem; color:#4d194d; word-break:break-word;">
+                                {{ $record->record_no }}
+                                <i class="fas fa-medal ms-1"></i>
+                            </p>
+
+                            <p class="text-muted mb-0" style="font-size:0.85rem; word-break:break-word;">
+                                {{ $record->description }}
+                            </p>
+                        </div>
+
                     </div>
                 </div>
             @empty
@@ -110,6 +117,7 @@
             @endforelse
         </div>
     </div>
+
 
 
     <!-- Back to Top -->
