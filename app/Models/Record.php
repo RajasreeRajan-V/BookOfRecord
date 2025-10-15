@@ -13,6 +13,8 @@ class Record extends Model
         'record_no',
         'category_id',
         'details',
+        'years',
+        'providers',
     ];
 
     public function category()

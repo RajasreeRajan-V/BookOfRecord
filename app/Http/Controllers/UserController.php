@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\AboutUs;
 use App\Models\Record;
@@ -25,26 +24,22 @@ class UserController extends Controller
        $categorious = Category::all();
        return view('users.about_us',compact('about','records','categorious'));
    }
-     public function category()
-    {
+   public function category()
+   {
        $categories = Category::all();
        return view('users.record_category',compact('categories'));
-    } 
+   } 
     public function gallery()
     {
       $galleries = Gallery::all();
       $categorious = Category::all();
        return view('users.gallery', compact('galleries','categorious'));
     }
-   //   public function records()
-   //  {
-     
-   //     return view('users.record_category', );
-   //  }
-   //   public function single()
-   //  {
-   //     return view('users.single_records');
-   //  }
+   public function showGallery(string $id)
+   {
+      $galleryShow = Gallery::findOrFail($id);
+      return view('users.gallery_show', compact('galleryShow'));
+   }
    public function showRecord(string $id)
     {
        $category = Category::findOrFail($id);

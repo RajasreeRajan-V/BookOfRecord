@@ -10,8 +10,7 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-  <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,8 +46,8 @@
     <div class="container-fluid sticky-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
-                <a href="index.html" class="navbar-brand d-flex align-items-center">
-                    <img src="{{ asset('img/logo.png') }}" alt="Book of Record Logo" class="logo-img me-3" style="height:50px;">
+                 <a href="index.html" class="navbar-brand d-flex align-items-center">
+                    <img src="{{ asset('img/logo.png') }}"  class="logo-img me-3" style="height:50px;">
                     <span style="
                         font-family: 'Space Grotesk', sans-serif; 
                         font-weight: 800; 
@@ -63,12 +62,9 @@
                     </span>
                 </a>
 
-
-
-                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
@@ -95,17 +91,15 @@
     <div class="container-fluid pb-5 bg-primary hero-header">
         <div class="container py-5">
             <div class="row g-3 align-items-center">
-                 <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="mb-0  slideInLeft" style="color: white">
-                            Records in {{ $category->name }}
-                        </h1>
-                    </div>
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h1 class="mb-0  slideInLeft" style="color: white">{{ $galleryShow->title }}</h1>
+                </div>
                 <div class="col-lg-6 animated slideInRight">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
                             <li class="breadcrumb-item"><a class="text-primary" href="{{ route('home') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-primary" href="{{ route('category')}}">Category</a></li>
-                            <li class="breadcrumb-item text-secondary active" aria-current="page">{{ $category->name }}</li>
+                            <li class="breadcrumb-item"><a class="text-primary" href="{{ route('gallery') }}">Gallery</a></li>
+                            <li class="breadcrumb-item text-secondary active" aria-current="page">{{ $galleryShow->title }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -113,45 +107,45 @@
         </div>
     </div>
     <!-- Hero End -->
+<!-- Single Record Detail Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="text-center wow fadeIn" data-wow-delay="0.1s">
+            <h2 class="mb-3"
+                style="font-weight: 600; position: relative; display: inline-block; font-size: 1.8rem;">
+                Record Highlight
+                <span
+                    style="position: absolute; left: 0; bottom: -3px; width: 100%; height: 3px; background: linear-gradient(90deg, #e6ccff, #b19cd9); border-radius: 2px;"></span>
+            </h2>
+            <p>Explore a remarkable record and the achievement behind it.</p>
+        </div>
 
-
-  <!-- Records Section -->
-    <div class="container py-5">
-        <h2 class="mb-4">{{ $category->name }} - Records</h2>
-        <p>{{ $category->description }}</p>
-
- <div class="row gy-3 gx-2">
-    @forelse($records as $record)
-        <div class="col-6 col-md-4">
-            <a href="{{ route('category.single.record',$record->id) }}" style="text-decoration: none; color: inherit;">
-                <div class="choose-card gallery-card p-3" style="border:2px solid #4d194d; border-radius:8px;">
-                    <img src="{{ asset('storage/' . $record->image) }}" 
-                        class="img-fluid mb-2"
-                        style="height:150px; width:100%; object-fit:contain; border-radius:4px; background-color:#f8f8f8;">
-
-                    <h6 class="mb-1"
-                        style="max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word;">
-                        {{ $record->name }}
-                    </h6>
-                    <p class="mb-1" style="font-size:0.85rem; color:#4d194d;">
-                        <i class="fas fa-medal"></i> {{ $record->record_no }}
-                    </p>
-                    <p class="text-muted mb-0" style="font-size:0.85rem;">
-                        {{ Str::limit($record->description, 80) }}
-                    </p>
+        <div class="row align-items-center gy-4 mt-4">
+            <!-- Image Column -->
+            <div class="col-12 col-md-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="choose-card single-gallery-card"
+                    style="border: 2px solid #c7b16b; border-radius: 8px; padding: 0; overflow: hidden;">
+                    <img src="{{ asset('storage/' . $galleryShow->img) }}"  
+                         style="width: 100%; height: 350px; object-fit: cover;">
                 </div>
-            </a>
-        </div>
-    @empty
-        <div class="col-12">
-            <p class="text-muted">No records found under this category.</p>
-        </div>
-    @endforelse
-</div>
+            </div>
 
+            <!-- Details Column -->
+            <div class="col-12 col-md-6 wow fadeIn" data-wow-delay="0.2s">
+                <h3 style="font-weight: 600; color:#4d194d;">{{ $galleryShow->title }}</h3>
+                <p style="font-size: 1rem; line-height: 1.6;">
+                    {{ $galleryShow->desc }}
+                </p>
+                <a href="{{ url()->previous() }}" class="btn btn-outline-primary mt-3">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+            </div>
+        </div>
     </div>
+</div>
+<!-- Single Record Detail End -->
 
-    
+
 <!-- Footer Start -->
 <div class="container-fluid text-dark-50 footer pt-5" 
      style="background: linear-gradient(135deg, #4d194d, #c7b16b);">
@@ -243,6 +237,8 @@
   </div>
 </div>
 <!-- Footer End -->
+
+
     <!-- Back to Top -->
     <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 

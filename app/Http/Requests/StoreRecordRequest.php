@@ -21,13 +21,19 @@ class StoreRecordRequest extends FormRequest
      */
     public function rules(): array
     {
+        
         return [
-           'name' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // image file validation
-        'record_no' => 'required|string|unique:records,record_no',
-        'category_id' => 'required|exists:categories,id', // must exist in categories table
-        'details' => 'nullable|string',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'record_no' => 'required|string|unique:records,record_no',
+            'category_id' => 'required|exists:categories,id',
+            'details' => 'nullable|string',
+            'years' => 'required|regex:/^\d{4}$/', // Only 4 digits allowed, e.g., 2024
+            // dd($this->years),
+
+            'providers' => 'nullable|string|max:255',
         ];
+
     }
 }

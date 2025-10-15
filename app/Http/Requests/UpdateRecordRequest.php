@@ -24,10 +24,12 @@ class UpdateRecordRequest extends FormRequest
         return [
         'name' => 'nullable|string|max:255',
         'description' => 'nullable|string',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // image file validation
         'record_no' => 'nullable|string|unique:records,record_no',
-        'category_id' => 'required|exists:categories,id', // must exist in categories table
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'category_id' => 'nullable|exists:categories,id',
         'details' => 'nullable|string',
+        'years' => 'nullable|regex:/^\d{4}$/', // Only 4 digits allowed, e.g., 2024
+        'providers' => 'nullable|string|max:255',
         ];
     }
 }

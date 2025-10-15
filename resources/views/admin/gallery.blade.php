@@ -47,8 +47,7 @@
     <div class="container py-5">
       <div class="row g-3 align-items-center">
         <div class="col-lg-6 text-center text-lg-start">
-                        <h1 class="mb-0 animated slideInLeft" 
-                            style="white-space: nowrap;color: white;">
+                    <h1 class="mb-0  slideInLeft" style="color: white">
                             Gallery
                         </h1>
                     </div>

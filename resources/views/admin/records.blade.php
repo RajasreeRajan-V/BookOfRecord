@@ -10,7 +10,7 @@
 
   <!-- Favicon -->
   <link href="img/favicon.ico" rel="icon">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,11 +47,10 @@
     <div class="container py-5">
       <div class="row g-3 align-items-center">
         <div class="col-lg-6 text-center text-lg-start">
-                        <h1 class="mb-0 animated slideInLeft" 
-                            style="white-space: nowrap;color: white;">
-                            Records
-                        </h1>
-                    </div>
+          <h1 class="mb-0  slideInLeft" style="color: white">
+            Records
+          </h1>
+        </div>
         <div class="col-lg-6 animated slideInRight">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center justify-content-lg-end mb-0">
@@ -83,46 +82,66 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="#" method="POST" enctype="multipart/form-data">
-          @csrf
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="title" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="Enter Title" required>
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea class="form-control" id="desc" name="description" rows="6" placeholder="Enter description..."
-                required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="title" class="form-label">Record Certification Number</label>
-              <input type="text" class="form-control" id="record_no" name="record_no" placeholder="Enter Title"
-                required>
-            </div>
-            <div class="mb-3">
-              <label for="image1" class="form-label">Image</label>
-              <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
-            </div>
-            <div class="mb-3">
-              <label for="category" class="form-label">Category</label>
-              <select class="form-select" id="category" name="category_id" required>
-                <option value="" disabled selected>Select a Category</option>
-                @foreach($categories as $category)
-                  <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Details(Optional)</label>
-              <textarea class="form-control" id="desc" name="details" rows="6" placeholder="Enter description..."
-                required></textarea>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save About Us</button>
-          </div>
-        </form>
+  @csrf
+  <div class="modal-body">
+    <!-- Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Title" required>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="desc" class="form-label">Description</label>
+      <textarea class="form-control" id="desc" name="description" rows="6" placeholder="Enter description..." required></textarea>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="record_no" class="form-label">Record Certification Number</label>
+        <input type="text" class="form-control" id="record_no" name="record_no" placeholder="Enter Record Number" required>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="year" class="form-label">Year</label>
+        <input type="text" class="form-control" id="year" name="years" placeholder="Enter year">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="provider" class="form-label">Provider</label>
+        <input type="text" class="form-control" id="provider" name="provider" placeholder="Record provider">
+      </div>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <select class="form-select" id="category" name="category_id" required>
+        <option value="" disabled selected>Select a Category</option>
+        @foreach($categories as $category)
+          <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+      </select>
+    </div>
+
+    <!-- Details -->
+    <div class="mb-3">
+      <label for="details" class="form-label">Details (Optional)</label>
+      <textarea class="form-control" id="details" name="details" rows="4" placeholder="Enter additional details..."></textarea>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Save Record</button>
+  </div>
+</form>
+
       </div>
     </div>
   </div>
@@ -143,49 +162,49 @@
 
         @forelse($records as $record)
           <div class="col-6 col-md-4 wow fadeIn" data-wow-delay="0.1s">
-           <div class="choose-card gallery-card d-flex flex-column justify-content-between" 
-     style="border: 2px solid #4d194d; border-radius: 5px; padding: 8px; height: 100%;">
-  
-  <!-- Image -->
-  <img class="img-fluid mb-2" src="{{ asset('storage/' . $record->image) }}" alt="{{ $record->name }}"
-       style="width: 100%; height: 150px; object-fit:contain; border-radius: 4px; background-color:#f8f8f8;">
+            <div class="choose-card gallery-card d-flex flex-column justify-content-between"
+              style="border: 2px solid #4d194d; border-radius: 5px; padding: 8px; height: 100%;">
 
-  <!-- Name -->
-  <h6 class="mb-1 mt-1" style="font-weight:600; word-break: break-word;">
-    {{ $record->name }}
-  </h6>
+              <!-- Image -->
+              <img class="img-fluid mb-2" src="{{ asset('storage/' . $record->image) }}" alt="{{ $record->name }}"
+                style="width: 100%; height: 150px; object-fit:contain; border-radius: 4px; background-color:#f8f8f8;">
 
-  <!-- Record No & Category -->
-  <p class="text-muted mb-1" style="font-size:0.85rem; word-break: break-word; color:#4d194d;">
-    {{ $record->record_no }} | {{ $record->category->name ?? 'No Category' }}
-  </p>
+              <!-- Name -->
+              <h6 class="mb-1 mt-1" style="font-weight:600; word-break: break-word;">
+                {{ $record->name }}
+              </h6>
 
-  <!-- Medal icon -->
-  <p class="mb-1"><i class="fas fa-medal"></i></p>
+              <!-- Record No & Category -->
+              <p class="text-muted mb-1" style="font-size:0.85rem; word-break: break-word; color:#4d194d;">
+                {{ $record->record_no }} | {{ $record->category->name ?? 'No Category' }}
+              </p>
 
-  <!-- Description -->
-  <p class="mb-2" style="font-size:0.85rem; word-break: break-word; overflow-wrap: break-word;">
-    {{ $record->description }}
-  </p>
+              <!-- Medal icon -->
+              <p class="mb-1"><i class="fas fa-medal"></i></p>
 
-  <!-- Buttons -->
-  <div class="d-flex justify-content-center gap-2 mt-auto">
-    <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-            data-bs-target="#editRecordModal{{ $record->id }}">
-      <i class="fas fa-edit"></i> Edit
-    </button>
+              <!-- Description -->
+              <p class="mb-2" style="font-size:0.85rem; word-break: break-word; overflow-wrap: break-word;">
+                {{ $record->description }}
+              </p>
 
-    <form action="{{ route('admin.adminRecord.destroy', $record->id) }}" method="POST" class="deleteForm">
-  @csrf
-  @method('DELETE')
-  <button type="button" class="btn btn-sm btn-outline-danger delete-btn">
-    <i class="fas fa-trash"></i> Delete
-  </button>
-</form>
+              <!-- Buttons -->
+              <div class="d-flex justify-content-center gap-2 mt-auto">
+                <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                  data-bs-target="#editRecordModal{{ $record->id }}">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
 
-  </div>
+                <form action="{{ route('admin.adminRecord.destroy', $record->id) }}" method="POST" class="deleteForm">
+                  @csrf
+                  @method('DELETE')
+                  <button type="button" class="btn btn-sm btn-outline-danger delete-btn">
+                    <i class="fas fa-trash"></i> Delete
+                  </button>
+                </form>
 
-</div>
+              </div>
+
+            </div>
 
 
           </div>
@@ -200,56 +219,72 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ route('admin.adminRecord.update', $record->id) }}" method="POST"
-                  enctype="multipart/form-data">
-                  @csrf
-                  @method('PUT')
+                <form action="{{ route('admin.adminRecord.update', $record->id) }}" method="POST" enctype="multipart/form-data">
+  @csrf
+  @method('PUT')
 
-                  <div class="modal-body text-start">
-                    <div class="mb-3">
-                      <label class="form-label">Name</label>
-                      <input type="text" name="name" class="form-control" value="{{ $record->name }}" required>
-                    </div>
+  <div class="modal-body text-start">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" name="name" class="form-control" value="{{ $record->name }}" required>
+    </div>
 
-                    <div class="mb-3">
-                      <label class="form-label">Category</label>
-                      <select name="category_id" class="form-select" required>
-                        <option value="" disabled>Select Category</option>
-                        @foreach($categories as $category)
-                          <option value="{{ $category->id }}" {{ $record->category_id == $category->id ? 'selected' : '' }}>
-                            {{ $category->name }}
-                          </option>
-                        @endforeach
-                      </select>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Certificate No</label>
-                      <input type="text" name="record_no" class="form-control" value="{{ $record->record_no }}" required>
-                    </div>
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <select name="category_id" class="form-select" required>
+        <option value="" disabled>Select Category</option>
+        @foreach($categories as $category)
+          <option value="{{ $category->id }}" {{ $record->category_id == $category->id ? 'selected' : '' }}>
+            {{ $category->name }}
+          </option>
+        @endforeach
+      </select>
+    </div>
 
-                    <div class="mb-3">
-                      <label class="form-label">Description</label>
-                      <textarea name="description" class="form-control" rows="2">{{ $record->description }}</textarea>
-                    </div>
+    <!-- ✅ Certificate No & Current Image in one row -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Certificate No</label>
+        <input type="text" name="record_no" class="form-control" value="{{ $record->record_no }}" required>
+      </div>
 
-                    <div class="mb-3">
-                      <label class="form-label">Current Image</label><br>
-                      <img src="{{ asset('storage/' . $record->image) }}" alt="Record Image" width="100" height="80"
-                        style="object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-                    </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Current Image</label><br>
+        <img src="{{ asset('storage/' . $record->image) }}" alt="Record Image" width="100" height="80"
+          style="object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+      </div>
+    </div>
 
-                    <div class="mb-3">
-                      <label class="form-label">Change Image</label>
-                      <input type="file" name="image" class="form-control">
-                      <small class="text-muted">Leave empty to keep current image</small>
-                    </div>
-                  </div>
+    <!-- ✅ Year & Provider in one row -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Year</label>
+        <input type="text" name="year" class="form-control" value="{{ $record->year ?? '' }}" placeholder="Enter year">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Provider</label>
+        <input type="text" name="provider" class="form-control" value="{{ $record->provider ?? '' }}" placeholder="Record provider">
+      </div>
+    </div>
 
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn" style="background-color:#4d194d; color:white;">Update</button>
-                  </div>
-                </form>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea name="description" class="form-control" rows="2">{{ $record->description }}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Change Image</label>
+      <input type="file" name="image" class="form-control">
+      <small class="text-muted">Leave empty to keep current image</small>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="btn" style="background-color:#4d194d; color:white;">Update</button>
+  </div>
+</form>
+
               </div>
             </div>
           </div>
@@ -277,28 +312,28 @@
   <!-- Template Javascript -->
   <script src="{{asset('js/main.js')}}"></script>
   <script>
-  // Select all delete buttons
-  document.querySelectorAll('.delete-btn').forEach(function(button){
-    button.addEventListener('click', function(e){
-      e.preventDefault();
-      const form = this.closest('form');
+    // Select all delete buttons
+    document.querySelectorAll('.delete-btn').forEach(function (button) {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        const form = this.closest('form');
 
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          form.submit(); // submit the form if confirmed
-        }
-      })
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            form.submit(); // submit the form if confirmed
+          }
+        })
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 

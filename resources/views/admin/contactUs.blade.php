@@ -73,7 +73,6 @@
             <a href="#" class="d-block">Admin/Manager</a>
           </div>
         </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -161,6 +160,13 @@
                 <i class="fas fa-envelope"></i>
                 <p>
                   Contact Us
+                </p>
+              </a>
+            </li> <li class="nav-item">
+              <a href="{{ route('admin.adminForm.index') }}" class="nav-link">
+                <i class="fas fa-envelope"></i>
+                <p>
+                 Application Forms
                 </p>
               </a>
             </li>

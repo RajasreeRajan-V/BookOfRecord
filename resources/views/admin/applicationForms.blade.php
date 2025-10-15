@@ -73,7 +73,6 @@
             <a href="#" class="d-block">Admin/Manager</a>
           </div>
         </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -210,137 +209,195 @@
       </div>
       <!-- /.content-header -->
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h3>{{ $contactsCount }}</h3>
-                  <p>Contact Us</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-chatbubble-working"></i>
-
-                </div>
-                <a href="{{ route('admin.contactUs.index') }}" class="small-box-footer">
-                  More info <i class="fas fa-arrow-circle-right"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>{{ $galleryCount }}</h3>
-                  <p>Gallery</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-images"></i>
-                </div>
-                <a href="{{ route('admin.gallery.index') }}" class="small-box-footer">
-                  More info <i class="fas fa-arrow-circle-right"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>{{ $categoriesCount }}</h3>
-                  <p>Categories</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-trophy"></i>
-                </div>
-                <a href="{{ route('admin.adminCategory.index') }}" class="small-box-footer">
-                  More info <i class="fas fa-arrow-circle-right"></i>
-                </a>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-danger">
-                <div class="inner">
-                  <h3><i class="fas fa-info-circle"></i>
-                  </h3>
-                  <p>About Us</p>
-                </div>
-                <div class="icon">
-                  <i class="fas fa-info-circle"></i>
-                </div>
-                <a href="{{ route('admin.aboutUs.index') }}" class="small-box-footer">
-                  More info <i class="fas fa-arrow-circle-right"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- /.row -->
-
-      </section>
-      <!-- /.content -->
+    <br>
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+         style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
+        
+        <!-- Success Icon -->
+        <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+        
+        <div>{{ session('success') }}</div>
+        
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-      <p class="footer-text" style="margin-top:15px;">
-        Copyright &copy; 2025
-        <a href="http://astrasoftwaresolutions.com/" target="_blank" style="color: #4d194d;">ASTRA
-          SOFTWARE SOLUTIONS</a> | All rights reserved
-      </p>
-      <div class="float-right d-none d-sm-inline-block">
+@endif
+   <div class="container-fluid py-4">
+  <div class="container">
+    <h3 class="mb-4 fw-bold text-center">Record Attempt Applications</h3>
 
-      </div>
-    </footer>
+    <table class="table align-middle text-center">
+      <thead class="thead-light" style="background: linear-gradient(90deg, #4d194d, #c7b16b); color: #fff;">
+        <tr>
+          <th>#</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Gender</th>
+          <th>Occupation</th>
+          <th>Submitted On</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @forelse($forms as $form)
+          <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{ $form->full_name }}</td>
+            <td>{{ $form->email }}</td>
+            <td>{{ $form->mobile }}</td>
+            <td>{{ $form->gender }}</td>
+            <td>{{ $form->occupation ?? '-' }}</td>
+            <td>{{ $form->created_at->timezone('Asia/Kolkata')->format('d M Y H:i') }}</td>
+            <td class="d-flex justify-content-center gap-2">
+              
+              <!-- View Button -->
+              <a href="javascript:void(0)" 
+                 class="btn btn-sm btn-info viewFormBtn" 
+                 data-id="{{ $form->id }}"
+                 data-name="{{ $form->full_name }}"
+                 data-email="{{ $form->email }}"
+                 data-mobile="{{ $form->mobile }}"
+                 data-gender="{{ $form->gender }}"
+                 data-dob="{{ $form->dob }}"
+                 data-occupation="{{ $form->occupation }}"
+                 data-address="{{ $form->address }}"
+                 data-description="{{ $form->description }}"
+                 data-drive="{{ $form->google_drive_link }}"
+                 data-files="{{ json_encode($form->evidence_files) }}">
+                 <i class="fas fa-eye"></i>
+              </a>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-      <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+              <!-- Delete Button -->
+              <form action="{{ route('admin.adminForm.destroy', $form->id) }}" 
+                    method="POST" 
+                    class="deleteForm">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-sm btn-danger">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+        @empty
+          <tr>
+            <td colspan="8" class="text-center text-danger">
+              No application forms found.
+            </td>
+          </tr>
+        @endforelse
+      </tbody>
+    </table>
   </div>
-  <!-- ./wrapper -->
+</div>
 
-  <!-- jQuery -->
-  <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <!-- Bootstrap 4 -->
-  <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <!-- ChartJS -->
-  <script src="{{ asset('admin/plugins/chart.js') }}/Chart.min.js') }}"></script>
-  <!-- Sparkline -->
-  <script src="{{ asset('admin/plugins/sparklines/sparkline.js') }}"></script>
-  <!-- JQVMap -->
-  <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-  <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-  <!-- daterangepicker -->
-  <script src="{{ asset('admin/plugins/moment/moment.min.js') }}"></script>
-  <script src="{{ asset('admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="{{ asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-  <!-- Summernote -->
-  <script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
-  <!-- overlayScrollbars -->
-  <script src="{{ asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-  <!-- AdminLTE App -->
-  <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+<!-- View Modal -->
+<div class="modal fade" id="viewFormModal" tabindex="-1" role="dialog" aria-labelledby="viewFormModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewFormModalLabel">Application Form Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          style="background:none; border:none; font-size:22px; color:#333;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Full Name:</strong> <span id="formName"></span></p>
+        <p><strong>Email:</strong> <span id="formEmail"></span></p>
+        <p><strong>Mobile:</strong> <span id="formMobile"></span></p>
+        <p><strong>Gender:</strong> <span id="formGender"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="formDob"></span></p>
+        <p><strong>Occupation:</strong> <span id="formOccupation"></span></p>
+        <p><strong>Address:</strong> <span id="formAddress"></span></p>
+        <p><strong>Description:</strong></p>
+        <p id="formDescription"></p>
+        <p><strong>Google Drive Link:</strong> 
+          <a href="#" id="formDrive" target="_blank">Open Link</a>
+        </p>
+        <p><strong>Evidence Files:</strong></p>
+        <div id="formFiles" class="d-flex flex-wrap gap-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Show Application Form Details
+  document.querySelectorAll('.viewFormBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('formName').textContent = btn.dataset.name;
+      document.getElementById('formEmail').textContent = btn.dataset.email;
+      document.getElementById('formMobile').textContent = btn.dataset.mobile;
+      document.getElementById('formGender').textContent = btn.dataset.gender;
+      document.getElementById('formDob').textContent = btn.dataset.dob;
+      document.getElementById('formOccupation').textContent = btn.dataset.occupation || '-';
+      document.getElementById('formAddress').textContent = btn.dataset.address;
+      document.getElementById('formDescription').textContent = btn.dataset.description;
+
+      const drive = btn.dataset.drive;
+      document.getElementById('formDrive').href = drive ? drive : '#';
+      document.getElementById('formDrive').textContent = drive ? 'View on Drive' : 'No Link';
+
+      // Show evidence files
+      const filesContainer = document.getElementById('formFiles');
+      filesContainer.innerHTML = '';
+      const files = JSON.parse(btn.dataset.files || '[]');
+      files.forEach(file => {
+        const a = document.createElement('a');
+        a.href = `/storage/${file}`;
+        a.textContent = 'View File';
+        a.target = '_blank';
+        a.className = 'btn btn-sm btn-outline-primary m-1';
+        filesContainer.appendChild(a);
+      });
+
+      $('#viewFormModal').modal('show');
+    });
+  });
+</script>
+
+
+
+
+
+
+    <!-- jQuery -->
+    <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- ChartJS -->
+    <script src="{{ asset('admin/plugins/chart.js') }}/Chart.min.js') }}"></script>
+    <!-- Sparkline -->
+    <script src="{{ asset('admin/plugins/sparklines/sparkline.js') }}"></script>
+    <!-- JQVMap -->
+    <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+    <!-- daterangepicker -->
+    <script src="{{ asset('admin/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{{ asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{{ asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+ 
 </body>
 
 </html>

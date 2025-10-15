@@ -10,7 +10,8 @@
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
-
+<!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,7 +72,13 @@
                         <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                         <a href="{{ route('about') }}" class="nav-item nav-link">About Us</a>
                         <a href="{{ route('gallery') }}" class="nav-item nav-link">Gallery</a>
-                        <a href="{{ route('category') }}" class="nav-item nav-link">Inspiring Records</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Inspiring Records</a>
+                            <div class="dropdown-menu bg-light mt-2">
+                                    <a href="{{ route('category' ) }}" class="dropdown-item">Types of Records</a>
+                                    <a href="{{ route('form.index' ) }}" class="dropdown-item">Record Application Form</a>
+                            </div>
+                        </div>
                        <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
                             <div class="dropdown-menu bg-light mt-2">
@@ -97,8 +104,7 @@
         <div class="container py-5">
             <div class="row g-3 align-items-center">
                 <div class="col-lg-6 text-center text-lg-start">
-                        <h1 class="mb-0 animated slideInLeft" 
-                            style="white-space: nowrap;color: white;">
+                    <h1 class="mb-0  slideInLeft" style="color: white">
                             Contact Us
                         </h1>
                     </div>
@@ -182,84 +188,94 @@
     <!-- Contact End -->
 
 <!-- Footer Start -->
-<div class="container-fluid text-dark-50 footer pt-5" style="background-color: #c7b16b;">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
-                <a href="{{ route('home') }}" class="d-inline-block mb-3">
-                    <h1 class="text-dark">BOOK OF RECORD</h1>
-                </a>
-                <p class="mb-0" style="color: #4d194d;">
-                    Book of Record is a global platform dedicated to recognizing extraordinary achievements and
-                    inspiring individuals to push beyond their limits.
-                    We honor talents, innovations, and milestones that make a difference celebrating every story
-                    of
-                    determination, creativity, and excellence.
-                    Our mission is to document greatness and motivate others to dream big, act bold, and leave a
-                    lasting impact on the world.
-                </p>
+<div class="container-fluid text-dark-50 footer pt-5" 
+     style="background: linear-gradient(135deg, #4d194d, #c7b16b);">
+  <div class="container py-5">
+    <!-- Use align-items-stretch so columns are equal height; g-4 for slightly tighter spacing -->
+    <div class="row g-4 justify-content-center text-center text-md-start align-items-stretch">
 
-            </div>
-            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
-
-            </div>
-            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
-                <h5 class="text-dark mb-4">Our Highlights</h5>
-                <ul class="list-unstyled" style="color: #4d194d;">
-                    <li><i class="fa-solid fa-star me-2"></i>Recognizing Extraordinary Achievements</li>
-                    <li><i class="fa-solid fa-trophy me-2"></i>Inspiring Individuals Worldwide</li>
-                    <li><i class="fa-solid fa-book me-2"></i>Documenting Talents and Milestones</li>
-                    <li><i class="fa-solid fa-lightbulb me-2"></i>Motivating Creativity and Excellence</li>
-                </ul>
-            </div>
-
-            <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
-                <h5 class="text-dark mb-4">Quick Links</h5>
-                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
-                    href="{{ route('home') }}">
-                    <i class="fa-solid fa-house me-2"></i> Home
-                </a>
-
-                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
-                    href="{{ route('about') }}">
-                    <i class="fa-solid fa-circle-info me-2"></i> About Us
-                </a>
-
-                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
-                    href="{{ route('gallery') }}">
-                    <i class="fa-solid fa-images me-2"></i> Gallery
-                </a>
-
-                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
-                    href="{{ route('category') }}">
-                    <i class="fa-solid fa-trophy me-2"></i> Inspiring Records
-                </a>
-
-                <a class="btn btn-link d-flex align-items-center" style="color: #4d194d;"
-                    href="{{ route('contact.index') }}">
-                    <i class="fa-solid fa-envelope me-2"></i> Contact
-                </a>
-
-            </div>
+      <!-- About Section -->
+      <div class="col-12 col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+        <!-- Make column a flex column so content can be vertically centered if needed -->
+        <div class="d-flex flex-column h-100">
+          <a href="{{ route('home') }}" class="d-inline-block mb-3">
+            <h1 class="m-0" style="color:#c7b16b; font-size:1.25rem;">BOOK OF RECORD</h1>
+          </a>
+          <p class="mb-0 mt-2" style="color:#e6ccff; line-height:1.4;">
+            Book of Record is a global platform dedicated to recognizing extraordinary achievements 
+            and inspiring individuals to push beyond their limits. We honor talents, innovations, 
+            and milestones that make a difference—celebrating every story of determination, creativity, 
+            and excellence.
+          </p>
         </div>
-    </div>
-    <div class="container wow fadeIn" data-wow-delay="0.1s">
-        <div class="copyright">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <p class="footer-text" style="margin-top:15px;">
-                        Copyright &copy; 2025
-                        <a href="http://astrasoftwaresolutions.com/" target="_blank"
-                            style="color: #4d194d;">ASTRA
-                            SOFTWARE SOLUTIONS</a> | All rights reserved
-                    </p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
+      </div>
 
-                </div>
-            </div>
+      <!-- Our Highlights (Centered) -->
+      <div class="col-12 col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+        <div class="d-flex flex-column h-100 justify-content-center">
+          <h5 class="mb-4" style="color: #c7b16b;">Our Highlights</h5>
+
+          <!-- limit width and center the list for better visual balance -->
+          <ul class="list-unstyled mx-auto" style="color: #e6ccff; max-width: 300px;">
+            <li class="d-flex align-items-start mb-2">
+              <i class="fa-solid fa-star me-3" style="font-size:1rem; margin-top:3px;"></i>
+              <span>Recognizing Extraordinary Achievements</span>
+            </li>
+            <li class="d-flex align-items-start mb-2">
+              <i class="fa-solid fa-trophy me-3" style="font-size:1rem; margin-top:3px;"></i>
+              <span>Inspiring Individuals Worldwide</span>
+            </li>
+            <li class="d-flex align-items-start mb-2">
+              <i class="fa-solid fa-book me-3" style="font-size:1rem; margin-top:3px;"></i>
+              <span>Documenting Talents and Milestones</span>
+            </li>
+            <li class="d-flex align-items-start">
+              <i class="fa-solid fa-lightbulb me-3" style="font-size:1rem; margin-top:3px;"></i>
+              <span>Motivating Creativity and Excellence</span>
+            </li>
+          </ul>
         </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-12 col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
+        <div class="d-flex flex-column h-100 justify-content-center text-center text-md-start">
+          <h5 class="mb-4" style="color: #c7b16b;">Quick Links</h5>
+
+          <div class="d-flex flex-column">
+            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('home') }}">
+              <i class="fa-solid fa-house me-2"></i> Home
+            </a>
+            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('about') }}">
+              <i class="fa-solid fa-circle-info me-2"></i> About Us
+            </a>
+            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('gallery') }}">
+              <i class="fa-solid fa-images me-2"></i> Gallery
+            </a>
+            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('category') }}">
+              <i class="fa-solid fa-trophy me-2"></i> Inspiring Records
+            </a>
+            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('contact.index') }}">
+              <i class="fa-solid fa-envelope me-2"></i> Contact
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="container">
+    <div class="copyright text-center py-3">
+      <p class="footer-text mt-3 mb-0" style="color: #c7b16b;">
+        Copyright &copy; 2025
+        <a href="http://astrasoftwaresolutions.com/" target="_blank" style="color: #e6ccff;">
+          ASTRA SOFTWARE SOLUTIONS
+        </a> | All rights reserved
+      </p>
+    </div>
+  </div>
 </div>
 <!-- Footer End -->
 
