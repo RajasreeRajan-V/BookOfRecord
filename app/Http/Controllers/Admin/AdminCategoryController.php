@@ -34,7 +34,7 @@ class AdminCategoryController extends Controller
     {
         $data = $request->validated();
         Category::create($data);
-        return redirect()->back()->with('success', 'About Us section saved successfully!');
+        return redirect()->back()->with('success', 'Category saved successfully!');
     }
 
     /**

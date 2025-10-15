@@ -24,15 +24,15 @@ class StoreRecordRequest extends FormRequest
         
         return [
             'name' => 'required|string|max:255',
+            'holder_name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'record_no' => 'required|string|unique:records,record_no',
             'category_id' => 'required|exists:categories,id',
             'details' => 'nullable|string',
-            'years' => 'required|regex:/^\d{4}$/', // Only 4 digits allowed, e.g., 2024
+            'years' => 'required|regex:/^\d{4}(-\d{4})?$/',
             // dd($this->years),
-            'holder_name' => 'required|string|max:255',
-            'providers' => 'nullable|string|max:255',
+            'providers' => 'required|string',
         ];
 
     }

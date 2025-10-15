@@ -72,7 +72,18 @@
   </div>
   <!-- Hero End -->
 
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+            style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
 
+            <!-- Success Icon -->
+            <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+
+            <div>{{ session('success') }}</div>
+
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
   <!-- Modal Start -->
   <div class="modal fade" id="aboutUsModal" tabindex="-1" aria-labelledby="aboutUsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -82,80 +93,78 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <form action="#" method="POST" enctype="multipart/form-data">
-  @csrf
-  <div class="modal-body">
-    <!-- Name -->
-    {{-- <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
-      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Title" required>
-    </div> --}}
-  <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="record_no" class="form-label">Name of Certificate</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Record Number" required>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="image" class="form-label">Holder Name</label>
-          <input class="form-control" type="text" id="holder_name" name="holder_name" accept="image/*" required>
-        </div>
-      </div>
-    <!-- Description -->
-    <div class="mb-3">
-      <label for="desc" class="form-label">Description</label>
-      <textarea class="form-control" id="desc" name="description" rows="6" placeholder="Enter description..." required></textarea>
-    </div>
+          @csrf
+          <div class="modal-body">
 
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label for="record_no" class="form-label">Record Certification Number</label>
-        <input type="text" class="form-control" id="record_no" name="record_no" placeholder="Enter Record Number" required>
-      </div>
-      <div class="col-md-6 mb-3">
-        <label for="image" class="form-label">Image</label>
-        <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
-      </div>
-    </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="record_no" class="form-label">Name of Certificate</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Record Number"
+                  required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="image" class="form-label">Holder Name</label>
+                <input class="form-control" type="text" id="holder_name" name="holder_name" accept="image/*" required>
+              </div>
+            </div>
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <textarea class="form-control" id="desc" name="description" rows="6" placeholder="Enter description..."
+                required></textarea>
+            </div>
 
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label for="year" class="form-label">Year</label>
-        <input type="text" class="form-control" id="year" name="years" placeholder="Enter year">
-      </div>
-      <div class="col-md-6 mb-3">
-        <label for="provider" class="form-label">Provider</label>
-        <input type="text" class="form-control" id="provider" name="provider" placeholder="Record provider">
-      </div>
-    </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="record_no" class="form-label">Record Certification Number</label>
+                <input type="text" class="form-control" id="record_no" name="record_no"
+                  placeholder="Enter Record Number" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input class="form-control" type="file" id="image" name="image" accept="image/*" required>
+              </div>
+            </div>
 
-    <!-- Category -->
-    <div class="mb-3">
-      <label for="category" class="form-label">Category</label>
-      <select class="form-select" id="category" name="category_id" required>
-        <option value="" disabled selected>Select a Category</option>
-        @foreach($categories as $category)
-          <option value="{{ $category->id }}">{{ $category->name }}</option>
-        @endforeach
-      </select>
-    </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="year" class="form-label">Year</label>
+                <input type="text" class="form-control" id="year" name="years" placeholder="Enter year">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="provider" class="form-label">Provider</label>
+                <input type="text" class="form-control" id="providers" name="providers" placeholder="Record provider">
+              </div>
+            </div>
 
-    <!-- Details -->
-    <div class="mb-3">
-      <label for="details" class="form-label">Details (Optional)</label>
-      <textarea class="form-control" id="details" name="details" rows="4" placeholder="Enter additional details..."></textarea>
+            <!-- Category -->
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <select class="form-select" id="category" name="category_id" required>
+                <option value="" disabled selected>Select a Category</option>
+                @foreach($categories as $category)
+                  <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <!-- Details -->
+            <div class="mb-3">
+              <label for="details" class="form-label">Details (Optional)</label>
+              <textarea class="form-control" id="details" name="details" rows="4"
+                placeholder="Enter additional details..."></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Record</button>
+          </div>
+        </form>
+
+      </div>
     </div>
   </div>
-
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-primary">Save Record</button>
-  </div>
-</form>
-
-      </div>
-    </div>
-  </div>
-
-
   <div class="container-fluid py-4">
     <div class="container">
       <div class="text-center wow fadeIn" data-wow-delay="0.1s">
@@ -175,7 +184,7 @@
               style="border: 2px solid #4d194d; border-radius: 5px; padding: 8px; height: 100%;">
 
               <!-- Image -->
-              <img class="img-fluid mb-2" src="{{ asset('storage/' . $record->image) }}" alt="{{ $record->name }}"
+              <img class="img-fluid mb-2" src="{{ asset('storage/' . $record->image) }}" 
                 style="width: 100%; height: 150px; object-fit:contain; border-radius: 4px; background-color:#f8f8f8;">
 
               <!-- Name -->
@@ -228,72 +237,83 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ route('admin.adminRecord.update', $record->id) }}" method="POST" enctype="multipart/form-data">
-  @csrf
-  @method('PUT')
+                <form action="{{ route('admin.adminRecord.update', $record->id) }}" method="POST"
+                  enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
 
-  <div class="modal-body text-start">
-    <div class="mb-3">
-      <label class="form-label">Name</label>
-      <input type="text" name="name" class="form-control" value="{{ $record->name }}" required>
-    </div>
+                  <div class="modal-body text-start">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="record_no" class="form-label">Name of Certificate</label>
+                          <input type="text" class="form-control" id="name" name="name" value="{{ $record->name }}"  required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="image" class="form-label">Holder Name</label>
+                          <input class="form-control" type="text" id="holder_name" name="holder_name" value="{{ $record->holder_name }}" required>
+                        </div>
+                      </div>
 
-    <div class="mb-3">
-      <label class="form-label">Category</label>
-      <select name="category_id" class="form-select" required>
-        <option value="" disabled>Select Category</option>
-        @foreach($categories as $category)
-          <option value="{{ $category->id }}" {{ $record->category_id == $category->id ? 'selected' : '' }}>
-            {{ $category->name }}
-          </option>
-        @endforeach
-      </select>
-    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Category</label>
+                      <select name="category_id" class="form-select" required>
+                        <option value="" disabled>Select Category</option>
+                        @foreach($categories as $category)
+                          <option value="{{ $category->id }}" {{ $record->category_id == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
 
-    <!-- ✅ Certificate No & Current Image in one row -->
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Certificate No</label>
-        <input type="text" name="record_no" class="form-control" value="{{ $record->record_no }}" required>
-      </div>
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Certificate No</label>
+                        <input type="text" name="record_no" class="form-control" value="{{ $record->record_no }}"
+                          required>
+                      </div>
 
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Current Image</label><br>
-        <img src="{{ asset('storage/' . $record->image) }}" alt="Record Image" width="100" height="80"
-          style="object-fit:cover; border-radius:4px; border:1px solid #ccc;">
-      </div>
-    </div>
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Current Image</label><br>
+                        <img src="{{ asset('storage/' . $record->image) }}" alt="Record Image" width="100" height="80"
+                          style="object-fit:cover; border-radius:4px; border:1px solid #ccc;">
+                      </div>
+                    </div>
 
-    <!-- ✅ Year & Provider in one row -->
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Year</label>
-        <input type="text" name="year" class="form-control" value="{{ $record->year ?? '' }}" placeholder="Enter year">
-      </div>
-      <div class="col-md-6 mb-3">
-        <label class="form-label">Provider</label>
-        <input type="text" name="provider" class="form-control" value="{{ $record->provider ?? '' }}" placeholder="Record provider">
-      </div>
-    </div>
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Year</label>
+                        <input type="text" name="years" class="form-control" value="{{ $record->years ?? '' }}"
+                          placeholder="Enter year">
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Provider</label>
+                        <input type="text" name="providers" class="form-control" value="{{ $record->providers ?? '' }}"
+                          placeholder="Record provider">
+                      </div>
+                    </div>
 
-    <div class="mb-3">
-      <label class="form-label">Description</label>
-      <textarea name="description" class="form-control" rows="2">{{ $record->description }}</textarea>
-    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Description</label>
+                      <textarea name="description" class="form-control" rows="2">{{ $record->description }}</textarea>
+                    </div>
 
-    <div class="mb-3">
-      <label class="form-label">Change Image</label>
-      <input type="file" name="image" class="form-control">
-      <small class="text-muted">Leave empty to keep current image</small>
-    </div>
-  </div>
-
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="submit" class="btn" style="background-color:#4d194d; color:white;">Update</button>
-  </div>
-</form>
-
+                    <div class="mb-3">
+                      <label class="form-label">Change Image</label>
+                      <input type="file" name="image" class="form-control">
+                      <small class="text-muted">Leave empty to keep current image</small>
+                    </div>
+                     <div class="mb-3">
+                      <label class="form-label">Details</label>
+                      <textarea name="details" class="form-control" rows="2">{{ $record->details }}</textarea>
+                    </div>
+                  </div>
+                   
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn" style="background-color:#4d194d; color:white;">Update</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

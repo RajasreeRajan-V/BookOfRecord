@@ -121,7 +121,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save About Us</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
@@ -156,7 +156,7 @@
                                 <p class="text-wrap" style="overflow-wrap: break-word;">
                                     {{ $category->description }}
                                 </p>
-
+                            </a>
                                 <div class="d-flex justify-content-center gap-2 mt-3">
                                     <!-- Edit Button -->
                                     <button class="btn btn-primary btn-sm editBtn" data-id="{{ $category->id }}"
@@ -176,7 +176,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </a>
+                        
                     </div>
                 @endforeach
             </div>
@@ -194,7 +194,7 @@
                 @method('PUT')
                 <!-- form fields -->
                 <div class="modal-content">
-                    <div class="modal-header bg-secondary text-white">
+                    <div class="modal-header text-white" style="background: #e6f7ea">
                         <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>

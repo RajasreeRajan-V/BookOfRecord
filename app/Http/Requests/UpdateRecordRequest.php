@@ -23,14 +23,23 @@ class UpdateRecordRequest extends FormRequest
     {
         return [
         'name' => 'nullable|string|max:255',
+
+        'holder_name' => 'nullable|string|max:255',
+
         'description' => 'nullable|string',
+
         'record_no' => 'nullable|string|unique:records,record_no',
+
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
         'category_id' => 'nullable|exists:categories,id',
+        
         'details' => 'nullable|string',
+
         'years' => 'nullable|regex:/^\d{4}$/', 
-        'holder_name' => 'required|string|max:255',
-        'providers' => 'nullable|string|max:255',
+        
+        'providers' => 'nullable|string',
+        
         ];
     }
 }

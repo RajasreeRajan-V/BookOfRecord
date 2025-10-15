@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <title>BOOK OF RECORD</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+    <meta charset="utf-8">
+    <title>BOOK OF RECORD</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Favicon -->
-  <link href="img/favicon.ico" rel="icon">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
-  <!-- Google Web Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Space+Grotesk&display=swap" rel="stylesheet">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Space+Grotesk&display=swap" rel="stylesheet">
 
-  <!-- Icon Font Stylesheet -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Libraries Stylesheet -->
-  <link href="{{asset('lib/animate/animate.min.css')}}" rel="stylesheet">
-  <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="{{asset('lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
 
-  <!-- Customized Bootstrap Stylesheet -->
-  <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-  <!-- Template Stylesheet -->
-  <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
 </head>
 
-<body >
+<body>
 
-  <!-- Spinner Start -->
-  <div id="spinner"
-    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-      <span class="sr-only">Loading...</span>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
-  </div>
-  <!-- Spinner End -->
+    <!-- Spinner End -->
 
     <!-- Navbar Start -->
     <div class="container-fluid sticky-top">
@@ -78,8 +77,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Inspiring Records</a>
                             <div class="dropdown-menu bg-light mt-2">
-                                    <a href="{{ route('category' ) }}" class="dropdown-item">Types of Records</a>
-                                    <a href="{{ route('form.index' ) }}" class="dropdown-item">Record Application Form</a>
+                                <a href="{{ route('category') }}" class="dropdown-item">Types of Records</a>
+                                <a href="{{ route('form.index') }}" class="dropdown-item">Record Application Form</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
@@ -100,18 +99,18 @@
         </div>
     </div>
     <!-- Navbar End -->
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
-         style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
-        
-        <!-- Success Icon -->
-        <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
-        
-        <div>{{ session('success') }}</div>
-        
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+            style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
+
+            <!-- Success Icon -->
+            <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+
+            <div>{{ session('success') }}</div>
+
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <div class="container"
         style="max-width: 900px; background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(77,25,77,0.2);">
@@ -122,7 +121,8 @@
                 <tbody>
                     <tr>
                         <td style="width:35%; font-weight:600;">Full Name:</td>
-                        <td><input type="text" name="full_name" class="form-control" required></td>
+                        <td><input type="text" name="full_name" class="form-control" pattern="^[A-Za-z\s]{3,50}$"
+                                title="Only letters and spaces, 3-50 characters" required></td>
                     </tr>
                     <tr>
                         <td style="font-weight:600;">Mobile No:</td>
@@ -196,12 +196,12 @@
                             <div style="background-color:#f1f1f1; padding:10px; border-radius:5px; margin-bottom:10px;">
                                 <strong>Terms & Conditions:</strong>
                                 <ol style="padding-left:20px; margin-top:5px;">
-                                    <li>I authorize  Book of Records to use the material submitted in their
+                                    <li>I authorize Book of Records to use the material submitted in their
                                         publications, productions, websites, and media.</li>
-                                    <li>I accept that  Book of Records will not be responsible for participant
+                                    <li>I accept that Book of Records will not be responsible for participant
                                         safety. Safety is solely my responsibility.</li>
                                     <li>I confirm all information provided is true and correct.</li>
-                                    <li>I authorize  Book of Records to contact me in future regarding records,
+                                    <li>I authorize Book of Records to contact me in future regarding records,
                                         services, or updates.</li>
                                 </ol>
                             </div>
@@ -226,19 +226,19 @@
     </div>
 
 
-  <!-- Back to Top -->
-  <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- Back to Top -->
+    <a href="#!" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-  <!-- JavaScript Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script href="{{asset('lib/wow/wow.min.js')}}"></script>
-  <script href="{{asset('lib/easing/easing.min.js')}}"></script>
-  <script href="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
-  <script href="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script href="{{asset('lib/wow/wow.min.js')}}"></script>
+    <script href="{{asset('lib/easing/easing.min.js')}}"></script>
+    <script href="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
+    <script href="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
 
-  <!-- Template Javascript -->
-  <script src="{{asset('js/main.js')}}"></script>
+    <!-- Template Javascript -->
+    <script src="{{asset('js/main.js')}}"></script>
 </body>
 
 </html>

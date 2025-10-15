@@ -62,19 +62,31 @@ class AdminRecordController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRecordRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        $record = Record::findOrFail($id);
-        $validated = $request->validated();
-        if ($request->hasFile('image')) {
-        $imageName = time() . '.' . $request->file('image')->extension();
-        $request->file('image')->storeAs('public/records', $imageName);
-        $validated['image'] = $imageName;
+         $validated = $request->validate([
+                'name' => 'sometimes|required|string|max:255',
+                'holder_name' => 'sometimes|required|string|max:255',
+                'description' => 'nullable|string',
+                'record_no' => 'nullable|string|unique:records,record_no,' . $id,
+                'category_id' => 'sometimes|required|exists:categories,id',
+                'details' => 'nullable|string',
+                'years' => ['nullable', 'regex:/^\d{4}(-\d{4})?$/'],
+                'providers' => 'nullable|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+         $record = Record::findOrFail($id);
+         if ($request->hasFile('image')) {
+        if ($record->image && Storage::disk('public')->exists($record->image)) {
+            Storage::disk('public')->delete($record->image);
+        }
+
+        $validated['image'] = $request->file('image')->store('records', 'public');
     } else {
-        // Keep the old image if no new image is uploaded
         $validated['image'] = $record->image;
     }
-      $record->update($validated);
+    $record->update($validated);
      return redirect()->back()->with('success', 'Record updated successfully!');
     }
 
