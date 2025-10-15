@@ -51,5 +51,26 @@ class UserController extends Controller
      $record = Record::with('category')->findOrFail($id);
     return view('users.single_records', compact('record',));
    }
-    
+    public function verify(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string|max:50',
+        ]);
+        $code = $request->code;
+        $record = Record::where('record_no', $code)->first();
+        if ($record) {
+            // Return certificate details
+            return response()->json([
+                'status' => 'success',
+                'holder_name' => $record->holder_name,
+                'certificate_name' => $record->name,
+                'years' => $record->years,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Invalid certificate code.',
+            ]);
+        }
+    }
 }

@@ -21,7 +21,7 @@ return new class extends Migration
         $table->string('occupation')->nullable();
         $table->text('address');
         $table->longText('description');
-        $table->json('evidence_files')->nullable(); // store multiple uploaded file paths
+        $table->json('evidence_files')->nullable();
         $table->string('google_drive_link')->nullable();
         $table->boolean('terms')->default(0);
         $table->timestamps();

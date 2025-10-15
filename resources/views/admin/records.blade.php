@@ -85,11 +85,20 @@
   @csrf
   <div class="modal-body">
     <!-- Name -->
-    <div class="mb-3">
+    {{-- <div class="mb-3">
       <label for="name" class="form-label">Name</label>
       <input type="text" class="form-control" id="name" name="name" placeholder="Enter Title" required>
-    </div>
-
+    </div> --}}
+  <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="record_no" class="form-label">Name of Certificate</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter Record Number" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="image" class="form-label">Holder Name</label>
+          <input class="form-control" type="text" id="holder_name" name="holder_name" accept="image/*" required>
+        </div>
+      </div>
     <!-- Description -->
     <div class="mb-3">
       <label for="desc" class="form-label">Description</label>

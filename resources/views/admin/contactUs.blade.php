@@ -49,8 +49,22 @@
         </li>
       </ul>
 
+       <!-- SEARCH FORM -->
+      <form class="form-inline ml-3" method="GET" action="{{ route('admin.contactUs.index') }}">
+        <div class="input-group input-group-sm">
+          <input id="searchInput" class="form-control form-control-navbar" type="search" name="search"
+            value="{{ request('search') }}" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
     </nav>
     <!-- /.navbar -->
+
+
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -222,9 +236,16 @@
         <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
-    <div class="container d-flex justify-content-center mt-5">
-      <div class="table-responsive" style="max-width: 90%; border: 2px solid #4d194d; border-radius: 8px;
+<div class="container mt-5">
+  <h3 class="mb-4 fw-bold text-center text-uppercase" 
+      style="color: #4d194d; letter-spacing: 0.5px;">
+     Contact Messages
+  </h3>
+
+  <div class="table-responsive mx-auto" 
+       style="max-width: 90%; border: 2px solid #4d194d; border-radius: 8px;
               box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 15px; background-color: #fff;">
+
         <table class="table align-middle text-center">
           <thead class="thead-light" style="background: linear-gradient(90deg, #4d194d, #c7b16b); color: #fff;">
             <tr>

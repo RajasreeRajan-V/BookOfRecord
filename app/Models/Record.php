@@ -14,6 +14,7 @@ class Record extends Model
         'category_id',
         'details',
         'years',
+        'holder_name',
         'providers',
     ];
 

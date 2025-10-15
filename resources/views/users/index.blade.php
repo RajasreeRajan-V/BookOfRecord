@@ -370,6 +370,21 @@
             </div>
         </div>
         <!-- Service End -->
+<!-- Verify Certificate Start -->
+<div class="container text-center py-5" style="max-width:700px;">
+    <h1 class="mb-3">Verify Your Certificate</h1>
+    <p class="mb-4">Enter your certificate code to verify its authenticity and view the associated record details.</p>
+
+    <form id="verifyForm" class="d-flex justify-content-center">
+        <input class="form-control me-2" type="text" name="code" 
+               placeholder="Enter certificate code (e.g., BR123)" 
+               style="height: 50px; max-width: 400px; border: 2px solid #4d194d; border-radius: 5px;" required>
+        <button type="submit" class="btn btn-primary" style="height: 50px;">Verify</button>
+    </form>
+
+    <div id="result" class="mt-4"></div>
+</div>
+
 
 <!-- Footer Start -->
 <div class="container-fluid text-dark-50 footer pt-5" 
@@ -469,6 +484,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
@@ -529,6 +545,74 @@
             });
         });
     </script>
+<script>
+$(document).ready(function() {
+    $('form').on('submit', function(e) {
+        e.preventDefault();
+        let code = $('input[name="code"]').val();
+
+        $.ajax({
+            url: '/verify-certificate', 
+            method: 'GET',
+            data: { code: code },
+            success: function(res) {
+                if(res.status === 'success') {
+                    $('#result').html(`
+                        <div style="
+                            border-left: 5px solid #4d194d;
+                            background: linear-gradient(90deg, #f9f0ff, #fff7e6);
+                            padding: 15px 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                            color: #4d194d;
+                            font-weight: 500;
+                            margin-top: 15px;
+                        ">
+                            <h5 style="margin-bottom:10px; font-weight:600;"><i class="fas fa-check-circle me-2" style="color: #28a745;"></i>Certificate Verified</h5>
+                            <p><strong>Certificate Holder:</strong> ${res.holder_name}</p>
+                            <p><strong>Certificate Name:</strong> ${res.certificate_name}</p>
+                            <p><strong>Years:</strong> ${res.years}</p>
+                        </div>
+                    `);
+                } else {
+                    $('#result').html(`
+                        <div style="
+                            border-left: 5px solid #c7b16b;
+                            background: #fff0e6;
+                            padding: 15px 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                            color: #c7b16b;
+                            font-weight: 500;
+                            margin-top: 15px;
+                        ">
+                   
+                            <p style="color:red;">${res.message}</p>
+                        </div>
+                    `);
+                }
+            },
+            error: function() {
+                $('#result').html(`
+                    <div style="
+                        border-left: 5px solid #c7b16b;
+                        background: #fff0e6;
+                        padding: 15px 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                        color: #c7b16b;
+                        font-weight: 500;
+                        margin-top: 15px;
+                    ">
+                        <h5 style="margin-bottom:10px; font-weight:600;"><i class="fas fa-times me-2" style="color:red;"></i>Error</h5>
+                        <p>Something went wrong. Try again.</p>
+                    </div>
+                `);
+            }
+        });
+    });
+});
+</script>
 
 </body>
 

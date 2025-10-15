@@ -31,7 +31,7 @@ class StoreRecordRequest extends FormRequest
             'details' => 'nullable|string',
             'years' => 'required|regex:/^\d{4}$/', // Only 4 digits allowed, e.g., 2024
             // dd($this->years),
-
+            'holder_name' => 'required|string|max:255',
             'providers' => 'nullable|string|max:255',
         ];
 

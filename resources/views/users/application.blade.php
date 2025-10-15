@@ -100,7 +100,18 @@
         </div>
     </div>
     <!-- Navbar End -->
-
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+         style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
+        
+        <!-- Success Icon -->
+        <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+        
+        <div>{{ session('success') }}</div>
+        
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
     <div class="container"
         style="max-width: 900px; background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(77,25,77,0.2);">

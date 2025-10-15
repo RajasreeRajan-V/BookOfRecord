@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('records', function (Blueprint $table) {
            $table->longText('years');
            $table->longText('providers')->nullable();
+           $table->string('holder_name')->after('name');
         });
     }
 
@@ -23,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('records', function (Blueprint $table) {
-            $table->dropColumn(['years', 'providers']);
+            $table->dropColumn(['years', 'providers','holder_name']);
         });
     }
 };

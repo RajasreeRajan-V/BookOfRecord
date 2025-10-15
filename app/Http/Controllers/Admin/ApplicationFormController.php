@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ApplicationForm;
 use Illuminate\Http\Request;
 use App\Models\Category;
-
+use Illuminate\Support\Facades\Storage;
 class ApplicationFormController extends Controller
 {
     /**
@@ -64,6 +64,15 @@ class ApplicationFormController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $form = ApplicationForm::findOrFail($id);
+        if (!empty($form->evidence_files)) {
+            foreach ($form->evidence_files as $file) {
+                if (Storage::disk('public')->exists($file)) {
+                    Storage::disk('public')->delete($file);
+                }
+            }
+        }
+        $form->delete();
+        return redirect()->back()->with('success', 'Application form deleted successfully.');
     }
 }

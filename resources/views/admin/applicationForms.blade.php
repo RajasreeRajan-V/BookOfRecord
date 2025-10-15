@@ -8,6 +8,8 @@
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Ionicons -->
@@ -219,7 +221,9 @@
         
         <div>{{ session('success') }}</div>
         
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+</button>
     </div>
 @endif
    <div class="container-fluid py-4">
@@ -252,32 +256,33 @@
             <td class="d-flex justify-content-center gap-2">
               
               <!-- View Button -->
-              <a href="javascript:void(0)" 
-                 class="btn btn-sm btn-info viewFormBtn" 
-                 data-id="{{ $form->id }}"
-                 data-name="{{ $form->full_name }}"
-                 data-email="{{ $form->email }}"
-                 data-mobile="{{ $form->mobile }}"
-                 data-gender="{{ $form->gender }}"
-                 data-dob="{{ $form->dob }}"
-                 data-occupation="{{ $form->occupation }}"
-                 data-address="{{ $form->address }}"
-                 data-description="{{ $form->description }}"
-                 data-drive="{{ $form->google_drive_link }}"
-                 data-files="{{ json_encode($form->evidence_files) }}">
-                 <i class="fas fa-eye"></i>
+             <a href="javascript:void(0)" 
+                class="btn btn-sm btn-info viewFormBtn" 
+                data-id="{{ $form->id }}"
+                data-name="{{ $form->full_name }}"
+                data-email="{{ $form->email }}"
+                data-mobile="{{ $form->mobile }}"
+                data-gender="{{ $form->gender }}"
+                data-dob="{{ $form->dob }}"
+                data-occupation="{{ $form->occupation }}"
+                data-address="{{ $form->address }}"
+                data-description="{{ $form->description }}"
+                data-drive="{{ $form->google_drive_link }}"
+                data-files='@json($form->evidence_files)'>
+                <i class="fas fa-eye"></i>
               </a>
 
               <!-- Delete Button -->
-              <form action="{{ route('admin.adminForm.destroy', $form->id) }}" 
-                    method="POST" 
-                    class="deleteForm">
+             <form action="{{ route('admin.adminForm.destroy', $form->id) }}" 
+                  method="POST" 
+                  class="deleteForm">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-sm btn-danger">
-                  <i class="fas fa-trash-alt"></i>
+                    <i class="fas fa-trash-alt"></i>
                 </button>
-              </form>
+            </form>
+
             </td>
           </tr>
         @empty
@@ -323,44 +328,6 @@
   </div>
 </div>
 
-<script>
-  // Show Application Form Details
-  document.querySelectorAll('.viewFormBtn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById('formName').textContent = btn.dataset.name;
-      document.getElementById('formEmail').textContent = btn.dataset.email;
-      document.getElementById('formMobile').textContent = btn.dataset.mobile;
-      document.getElementById('formGender').textContent = btn.dataset.gender;
-      document.getElementById('formDob').textContent = btn.dataset.dob;
-      document.getElementById('formOccupation').textContent = btn.dataset.occupation || '-';
-      document.getElementById('formAddress').textContent = btn.dataset.address;
-      document.getElementById('formDescription').textContent = btn.dataset.description;
-
-      const drive = btn.dataset.drive;
-      document.getElementById('formDrive').href = drive ? drive : '#';
-      document.getElementById('formDrive').textContent = drive ? 'View on Drive' : 'No Link';
-
-      // Show evidence files
-      const filesContainer = document.getElementById('formFiles');
-      filesContainer.innerHTML = '';
-      const files = JSON.parse(btn.dataset.files || '[]');
-      files.forEach(file => {
-        const a = document.createElement('a');
-        a.href = `/storage/${file}`;
-        a.textContent = 'View File';
-        a.target = '_blank';
-        a.className = 'btn btn-sm btn-outline-primary m-1';
-        filesContainer.appendChild(a);
-      });
-
-      $('#viewFormModal').modal('show');
-    });
-  });
-</script>
-
-
-
-
 
 
     <!-- jQuery -->
@@ -397,7 +364,60 @@
     <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
- 
+ <script>
+  // Show Application Form Details
+  document.querySelectorAll('.viewFormBtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('formName').textContent = btn.dataset.name;
+      document.getElementById('formEmail').textContent = btn.dataset.email;
+      document.getElementById('formMobile').textContent = btn.dataset.mobile;
+      document.getElementById('formGender').textContent = btn.dataset.gender;
+      document.getElementById('formDob').textContent = btn.dataset.dob;
+      document.getElementById('formOccupation').textContent = btn.dataset.occupation || '-';
+      document.getElementById('formAddress').textContent = btn.dataset.address;
+      document.getElementById('formDescription').textContent = btn.dataset.description;
+
+      const drive = btn.dataset.drive;
+      document.getElementById('formDrive').href = drive ? drive : '#';
+      document.getElementById('formDrive').textContent = drive ? 'View on Drive' : 'No Link';
+
+      // Show evidence files
+      const filesContainer = document.getElementById('formFiles');
+      filesContainer.innerHTML = '';
+      const files = JSON.parse(btn.dataset.files || '[]');
+      files.forEach(file => {
+        const a = document.createElement('a');
+        a.href = `/storage/${file}`;
+        a.textContent = 'View File';
+        a.target = '_blank';
+        a.className = 'btn btn-sm btn-outline-primary m-1';
+        filesContainer.appendChild(a);
+      });
+
+      $('#viewFormModal').modal('show');
+    });
+  });
+   document.querySelectorAll('.deleteForm').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // prevent actual form submit
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "This action cannot be undone!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          form.submit(); // submit the form if confirmed
+        }
+      });
+    });
+  });
+</script>
 </body>
 
 </html>

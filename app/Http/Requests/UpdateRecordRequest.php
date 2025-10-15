@@ -28,7 +28,8 @@ class UpdateRecordRequest extends FormRequest
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'category_id' => 'nullable|exists:categories,id',
         'details' => 'nullable|string',
-        'years' => 'nullable|regex:/^\d{4}$/', // Only 4 digits allowed, e.g., 2024
+        'years' => 'nullable|regex:/^\d{4}$/', 
+        'holder_name' => 'required|string|max:255',
         'providers' => 'nullable|string|max:255',
         ];
     }

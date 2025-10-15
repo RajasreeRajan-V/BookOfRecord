@@ -24,6 +24,7 @@ Route::get('/records/{id}', [UserController::class, 'showSingleRecord'])->name('
 Route::resource('contact', ContactUsController::class);
 Route::get('gallery/{id}', [UserController::class, 'showGallery'])->name('gallery.single'); 
 Route::resource('form', ApplicationFormController::class);
+Route::get('/verify-certificate', [UserController::class, 'verify'])->name('verify.certificate');
 
 
 
