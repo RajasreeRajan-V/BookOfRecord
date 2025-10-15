@@ -83,18 +83,18 @@
         </div>
     </div>
     <!-- Hero End -->
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
-         style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
-        
-        <!-- Success Icon -->
-        <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
-        
-        <div>{{ session('success') }}</div>
-        
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+            style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
+
+            <!-- Success Icon -->
+            <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+
+            <div>{{ session('success') }}</div>
+
+            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <!-- Modal Start -->
     <div class="modal fade" id="aboutUsModal" tabindex="-1" aria-labelledby="aboutUsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -142,45 +142,45 @@
 
             <div class="row gy-4 gx-md-5 gx-3 align-items-stretch text-center">
                 @foreach($categories as $category)
-                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
-                        <!-- Make the whole card clickable by using an <a> tag -->
-                        <a href="{{ route('admin.adminCategory.show', $category->id) }}"
-                            style="text-decoration: none; color: inherit;">
-                            <div class="choose-card h-100 p-4"
-                                style="background-color: #e3d8b5; border-radius: 10px; cursor: pointer;">
-                                <i class="fa fa-star fa-5x text-primary mb-4"></i>
-                                <h4 style="word-wrap: break-word; overflow-wrap: break-word;">
-                                    {{ $category->name }}
-                                </h4>
+                        <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                            <!-- Make the whole card clickable by using an <a> tag -->
+                            <a href="{{ route('admin.adminCategory.show', $category->id) }}"
+                                style="text-decoration: none; color: inherit;">
+                                <div class="choose-card h-100 p-4"
+                                    style="background-color: #e3d8b5; border-radius: 10px; cursor: pointer;">
+                                    <i class="fa fa-star fa-5x text-primary mb-4"></i>
+                                    <h4 style="word-wrap: break-word; overflow-wrap: break-word;">
+                                        {{ $category->name }}
+                                    </h4>
 
-                                <p class="text-wrap" style="overflow-wrap: break-word;">
-                                    {{ $category->description }}
-                                </p>
+                                    <p class="text-wrap" style="overflow-wrap: break-word;">
+                                        {{ $category->description }}
+                                    </p>
                             </a>
-                                <div class="d-flex justify-content-center gap-2 mt-3">
-                                    <!-- Edit Button -->
-                                    <button class="btn btn-primary btn-sm editBtn" data-id="{{ $category->id }}"
-                                        data-name="{{ $category->name }}" data-description="{{ $category->description }}"
-                                        data-bs-toggle="modal" data-bs-target="#editCategoryModal">
-                                        <i class="fa fa-edit"></i> Edit
-                                    </button>
+                            <div class="d-flex justify-content-center gap-2 mt-3">
+                                <!-- Edit Button -->
+                                <button class="btn btn-primary btn-sm editBtn" data-id="{{ $category->id }}"
+                                    data-name="{{ $category->name }}" data-description="{{ $category->description }}"
+                                    data-bs-toggle="modal" data-bs-target="#editCategoryModal">
+                                    <i class="fa fa-edit"></i> Edit
+                                </button>
 
-                                    <!-- Delete Button -->
-                                    <form action="{{ route('admin.adminCategory.destroy', $category->id) }}" method="POST"
-                                        class="deleteForm">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i> Delete
-                                        </button>
-                                    </form>
-                                </div>
+                                <!-- Delete Button -->
+                                <form action="{{ route('admin.adminCategory.destroy', $category->id) }}" method="POST"
+                                    class="deleteForm">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </button>
+                                </form>
                             </div>
-                        
+                        </div>
+
                     </div>
                 @endforeach
-            </div>
         </div>
+    </div>
     </div>
 
 

@@ -72,18 +72,18 @@
   </div>
   <!-- Hero End -->
 
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
-            style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
+  @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+      style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
 
-            <!-- Success Icon -->
-            <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+      <!-- Success Icon -->
+      <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
 
-            <div>{{ session('success') }}</div>
+      <div>{{ session('success') }}</div>
 
-            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+      <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
   <!-- Modal Start -->
   <div class="modal fade" id="aboutUsModal" tabindex="-1" aria-labelledby="aboutUsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -184,7 +184,7 @@
               style="border: 2px solid #4d194d; border-radius: 5px; padding: 8px; height: 100%;">
 
               <!-- Image -->
-              <img class="img-fluid mb-2" src="{{ asset('storage/' . $record->image) }}" 
+              <img class="img-fluid mb-2" src="{{ asset('storage/' . $record->image) }}"
                 style="width: 100%; height: 150px; object-fit:contain; border-radius: 4px; background-color:#f8f8f8;">
 
               <!-- Name -->
@@ -244,15 +244,17 @@
 
                   <div class="modal-body text-start">
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                          <label for="record_no" class="form-label">Name of Certificate</label>
-                          <input type="text" class="form-control" id="name" name="name" value="{{ $record->name }}"  required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <label for="image" class="form-label">Holder Name</label>
-                          <input class="form-control" type="text" id="holder_name" name="holder_name" value="{{ $record->holder_name }}" required>
-                        </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="record_no" class="form-label">Name of Certificate</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ $record->name }}"
+                          required>
                       </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="image" class="form-label">Holder Name</label>
+                        <input class="form-control" type="text" id="holder_name" name="holder_name"
+                          value="{{ $record->holder_name }}" required>
+                      </div>
+                    </div>
 
                     <div class="mb-3">
                       <label class="form-label">Category</label>
@@ -303,12 +305,12 @@
                       <input type="file" name="image" class="form-control">
                       <small class="text-muted">Leave empty to keep current image</small>
                     </div>
-                     <div class="mb-3">
+                    <div class="mb-3">
                       <label class="form-label">Details</label>
                       <textarea name="details" class="form-control" rows="2">{{ $record->details }}</textarea>
                     </div>
                   </div>
-                   
+
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn" style="background-color:#4d194d; color:white;">Update</button>

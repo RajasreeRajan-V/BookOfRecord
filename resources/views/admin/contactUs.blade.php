@@ -35,7 +35,7 @@
   <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -49,7 +49,7 @@
         </li>
       </ul>
 
-       <!-- SEARCH FORM -->
+      <!-- SEARCH FORM -->
       <form class="form-inline ml-3" method="GET" action="{{ route('admin.contactUs.index') }}">
         <div class="input-group input-group-sm">
           <input id="searchInput" class="form-control form-control-navbar" type="search" name="search"
@@ -176,11 +176,12 @@
                   Contact Us
                 </p>
               </a>
-            </li> <li class="nav-item">
+            </li>
+            <li class="nav-item">
               <a href="{{ route('admin.adminForm.index') }}" class="nav-link">
                 <i class="fas fa-envelope"></i>
                 <p>
-                 Application Forms
+                  Application Forms
                 </p>
               </a>
             </li>
@@ -223,246 +224,244 @@
       </div>
       <!-- /.content-header -->
 
-    <br>
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
-         style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
-        
-        <!-- Success Icon -->
-        <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
-        
-        <div>{{ session('success') }}</div>
-        
-        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-<div class="container mt-5">
-  <h3 class="mb-4 fw-bold text-center text-uppercase" 
-      style="color: #4d194d; letter-spacing: 0.5px;">
-     Contact Messages
-  </h3>
+      <br>
+      @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert"
+          style="border-left: 5px solid #28a745; border-radius: 8px; background: #e6f7ea; color: #155724; font-weight: 500;">
 
-  <div class="table-responsive mx-auto" 
-       style="max-width: 90%; border: 2px solid #4d194d; border-radius: 8px;
+          <!-- Success Icon -->
+          <i class="fas fa-check-circle me-2" style="font-size:1rem;"></i>
+
+          <div>{{ session('success') }}</div>
+
+          <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
+      <div class="container mt-5">
+        <h3 class="mb-4 fw-bold text-center text-uppercase" style="color: #4d194d; letter-spacing: 0.5px;">
+          Contact Messages
+        </h3>
+
+        <div class="table-responsive mx-auto" style="max-width: 90%; border: 2px solid #4d194d; border-radius: 8px;
               box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 15px; background-color: #fff;">
 
-        <table class="table align-middle text-center">
-          <thead class="thead-light" style="background: linear-gradient(90deg, #4d194d, #c7b16b); color: #fff;">
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Subject</th>
-              <th>Message</th>
-              <th>Status</th>
-              <th>Received At</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            @forelse($contacts as $contact)
+          <table class="table align-middle text-center">
+            <thead class="thead-light" style="background: linear-gradient(90deg, #4d194d, #c7b16b); color: #fff;">
               <tr>
-                <td>{{ $contacts->firstItem() + $loop->index }}</td>
-                <td>{{ $contact->name }}</td>
-                <td>{{ $contact->email }}</td>
-                <td>{{ $contact->subject }}</td>
-                <td>{{ Str::limit($contact->message, 50) }}</td>
-                <td class="status-badge">
-                  @if($contact->status === 'pending')
-                    <span class="badge bg-warning text-dark">Pending</span>
-                  @elseif($contact->status === 'read')
-                    <span class="badge bg-success">Read</span>
-                  @endif
-                </td>
-                <td>{{ $contact->created_at->timezone('Asia/Kolkata')->format('d M Y H:i') }}</td>
-                <td class="d-flex justify-content-center gap-2">
-                  <a href="javascript:void(0)" class="btn btn-sm btn-info viewContactBtn" data-id="{{ $contact->id }}"
-                    data-name="{{ $contact->name }}" data-email="{{ $contact->email }}"
-                    data-subject="{{ $contact->subject }}" data-message="{{ $contact->message }}">
-                    <i class="fas fa-eye"></i>
-                  </a>
-
-                  <form class="deleteContactForm" action="{{ route('admin.contactUs.destroy', $contact->id) }}"
-                    method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-danger deleteBtn">
-                      <i class="fas fa-trash-alt"></i>
-                    </button>
-                  </form>
-
-                  <a href="javascript:void(0)" class="btn btn-sm btn-primary replyContactBtn" data-id="{{ $contact->id }}"
-                    data-email="{{ $contact->email }}" data-name="{{ $contact->name }}">
-                    <i class="fas fa-reply"></i>
-                  </a>
-                </td>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Received At</th>
+                <th>Actions</th>
               </tr>
-            @empty
-              <tr>
-                <td colspan="8" class="text-center text-danger">
-                  No contacts found{{ request('search') ? " for '" . request('search') . "'" : '' }}.
-                </td>
-              </tr>
-            @endforelse
-          </tbody>
-        </table>
-      </div>
-    </div>
+            </thead>
+            <tbody>
+              @forelse($contacts as $contact)
+                <tr>
+                  <td>{{ $contacts->firstItem() + $loop->index }}</td>
+                  <td>{{ $contact->name }}</td>
+                  <td>{{ $contact->email }}</td>
+                  <td>{{ $contact->subject }}</td>
+                  <td>{{ Str::limit($contact->message, 50) }}</td>
+                  <td class="status-badge">
+                    @if($contact->status === 'pending')
+                      <span class="badge bg-warning text-dark">Pending</span>
+                    @elseif($contact->status === 'read')
+                      <span class="badge bg-success">Read</span>
+                    @endif
+                  </td>
+                  <td>{{ $contact->created_at->timezone('Asia/Kolkata')->format('d M Y H:i') }}</td>
+                  <td class="d-flex justify-content-center gap-2">
+                    <a href="javascript:void(0)" class="btn btn-sm btn-info viewContactBtn" data-id="{{ $contact->id }}"
+                      data-name="{{ $contact->name }}" data-email="{{ $contact->email }}"
+                      data-subject="{{ $contact->subject }}" data-message="{{ $contact->message }}">
+                      <i class="fas fa-eye"></i>
+                    </a>
 
-    <!-- View Modal -->
-    <div class="modal fade" id="viewContactModal" tabindex="-1" role="dialog" aria-labelledby="viewContactModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="viewContactModalLabel">Contact Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-              style="background:none; border:none; font-size:22px; color:#333;">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p><strong>Name:</strong> <span id="contactName"></span></p>
-            <p><strong>Email:</strong> <span id="contactEmail"></span></p>
-            <p><strong>Subject:</strong> <span id="contactSubject"></span></p>
-            <p><strong>Message:</strong></p>
-            <p id="contactMessage"></p>
-          </div>
+                    <form class="deleteContactForm" action="{{ route('admin.contactUs.destroy', $contact->id) }}"
+                      method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-sm btn-danger deleteBtn">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </form>
+
+                    <a href="javascript:void(0)" class="btn btn-sm btn-primary replyContactBtn"
+                      data-id="{{ $contact->id }}" data-email="{{ $contact->email }}" data-name="{{ $contact->name }}">
+                      <i class="fas fa-reply"></i>
+                    </a>
+                  </td>
+                </tr>
+              @empty
+                <tr>
+                  <td colspan="8" class="text-center text-danger">
+                    No contacts found{{ request('search') ? " for '" . request('search') . "'" : '' }}.
+                  </td>
+                </tr>
+              @endforelse
+            </tbody>
+          </table>
         </div>
       </div>
-    </div>
 
-    <!-- Reply Modal -->
-    <div class="modal fade" id="replyContactModal" tabindex="-1" role="dialog" aria-labelledby="replyContactModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <form id="replyForm" method="POST" action="{{ route('admin.contactUs.reply') }}">
-            @csrf
-            <input type="hidden" name="contact_id" id="replyContactId">
+      <!-- View Modal -->
+      <div class="modal fade" id="viewContactModal" tabindex="-1" role="dialog" aria-labelledby="viewContactModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="replyContactModalLabel">Reply to Contact</h5>
+              <h5 class="modal-title" id="viewContactModalLabel">Contact Details</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                 style="background:none; border:none; font-size:22px; color:#333;">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p><strong>To:</strong> <span id="replyEmail"></span></p>
-              <p><strong>Name:</strong> <span id="replyName"></span></p>
-              <div class="form-group">
-                <label for="replyMessage">Your Reply</label>
-                <textarea class="form-control" name="message" id="replyMessage" rows="5" required></textarea>
-              </div>
+              <p><strong>Name:</strong> <span id="contactName"></span></p>
+              <p><strong>Email:</strong> <span id="contactEmail"></span></p>
+              <p><strong>Subject:</strong> <span id="contactSubject"></span></p>
+              <p><strong>Message:</strong></p>
+              <p id="contactMessage"></p>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-success">Send Reply</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
+
+      <!-- Reply Modal -->
+      <div class="modal fade" id="replyContactModal" tabindex="-1" role="dialog"
+        aria-labelledby="replyContactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <form id="replyForm" method="POST" action="{{ route('admin.contactUs.reply') }}">
+              @csrf
+              <input type="hidden" name="contact_id" id="replyContactId">
+              <div class="modal-header">
+                <h5 class="modal-title" id="replyContactModalLabel">Reply to Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                  style="background:none; border:none; font-size:22px; color:#333;">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p><strong>To:</strong> <span id="replyEmail"></span></p>
+                <p><strong>Name:</strong> <span id="replyName"></span></p>
+                <div class="form-group">
+                  <label for="replyMessage">Your Reply</label>
+                  <textarea class="form-control" name="message" id="replyMessage" rows="5" required></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Send Reply</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
 
 
 
-    <!-- jQuery -->
-    <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-      $.widget.bridge('uibutton', $.ui.button)
-    </script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- ChartJS -->
-    <script src="{{ asset('admin/plugins/chart.js') }}/Chart.min.js') }}"></script>
-    <!-- Sparkline -->
-    <script src="{{ asset('admin/plugins/sparklines/sparkline.js') }}"></script>
-    <!-- JQVMap -->
-    <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-    <!-- daterangepicker -->
-    <script src="{{ asset('admin/plugins/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-    <!-- Summernote -->
-    <script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
-    <!-- overlayScrollbars -->
-    <script src="{{ asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
-    <script>
-      $(document).ready(function () {
-        // View Contact Modal
-        $('.viewContactBtn').on('click', function () {
-          const contactId = $(this).data('id');
+      <!-- jQuery -->
+      <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
+      <!-- jQuery UI 1.11.4 -->
+      <script src="{{ asset('admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+      <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+      <script>
+        $.widget.bridge('uibutton', $.ui.button)
+      </script>
+      <!-- Bootstrap 4 -->
+      <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+      <!-- ChartJS -->
+      <script src="{{ asset('admin/plugins/chart.js') }}/Chart.min.js') }}"></script>
+      <!-- Sparkline -->
+      <script src="{{ asset('admin/plugins/sparklines/sparkline.js') }}"></script>
+      <!-- JQVMap -->
+      <script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+      <script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+      <!-- jQuery Knob Chart -->
+      <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+      <!-- daterangepicker -->
+      <script src="{{ asset('admin/plugins/moment/moment.min.js') }}"></script>
+      <script src="{{ asset('admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
+      <!-- Tempusdominus Bootstrap 4 -->
+      <script src="{{ asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+      <!-- Summernote -->
+      <script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
+      <!-- overlayScrollbars -->
+      <script src="{{ asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+      <!-- AdminLTE App -->
+      <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
+      <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+      <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
+      <!-- AdminLTE for demo purposes -->
+      <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+      <script>
+        $(document).ready(function () {
+          // View Contact Modal
+          $('.viewContactBtn').on('click', function () {
+            const contactId = $(this).data('id');
 
-          $.ajax({
-            url: "{{ url('admin/contactUs') }}/" + contactId,
-            method: 'GET',
-            success: function (contact) {
-              $('#contactName').text(contact.name);
-              $('#contactEmail').text(contact.email);
-              $('#contactSubject').text(contact.subject);
-              $('#contactMessage').text(contact.message);
+            $.ajax({
+              url: "{{ url('admin/contactUs') }}/" + contactId,
+              method: 'GET',
+              success: function (contact) {
+                $('#contactName').text(contact.name);
+                $('#contactEmail').text(contact.email);
+                $('#contactSubject').text(contact.subject);
+                $('#contactMessage').text(contact.message);
 
-              $('#viewContactModal').modal('show');
+                $('#viewContactModal').modal('show');
 
-              // Update badge to "Read"
-              const rowBadge = $(`a.viewContactBtn[data-id="${contact.id}"]`)
-                .closest('tr')
-                .find('.status-badge');
-              rowBadge.html('<span class="badge bg-success">Read</span>');
-            },
-            error: function (err) {
-              console.error('Error fetching contact:', err);
-            }
+                // Update badge to "Read"
+                const rowBadge = $(`a.viewContactBtn[data-id="${contact.id}"]`)
+                  .closest('tr')
+                  .find('.status-badge');
+                rowBadge.html('<span class="badge bg-success">Read</span>');
+              },
+              error: function (err) {
+                console.error('Error fetching contact:', err);
+              }
+            });
+          });
+
+          // Reply Contact Modal
+          $('.replyContactBtn').on('click', function () {
+            const contactId = $(this).data('id');
+            const email = $(this).data('email');
+            const name = $(this).data('name');
+
+            $('#replyContactId').val(contactId);
+            $('#replyEmail').text(email);
+            $('#replyName').text(name);
+
+            $('#replyContactModal').modal('show');
+          });
+
+          // Delete confirmation
+          $('.deleteContactForm').on('submit', function (e) {
+            e.preventDefault();
+            Swal.fire({
+              title: 'Are you sure?',
+              text: 'This action cannot be undone!',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#3085d6',
+              confirmButtonText: 'Yes, delete it!',
+              cancelButtonText: 'Cancel'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.submit();
+              }
+            });
           });
         });
-
-        // Reply Contact Modal
-        $('.replyContactBtn').on('click', function () {
-          const contactId = $(this).data('id');
-          const email = $(this).data('email');
-          const name = $(this).data('name');
-
-          $('#replyContactId').val(contactId);
-          $('#replyEmail').text(email);
-          $('#replyName').text(name);
-
-          $('#replyContactModal').modal('show');
-        });
-
-        // Delete confirmation
-        $('.deleteContactForm').on('submit', function (e) {
-          e.preventDefault();
-          Swal.fire({
-            title: 'Are you sure?',
-            text: 'This action cannot be undone!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              this.submit();
-            }
-          });
-        });
-      });
-    </script>
+      </script>
 </body>
 
 </html>

@@ -35,7 +35,7 @@
   <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -163,11 +163,12 @@
                   Contact Us
                 </p>
               </a>
-            </li> <li class="nav-item">
+            </li>
+            <li class="nav-item">
               <a href="{{ route('admin.adminForm.index') }}" class="nav-link">
                 <i class="fas fa-envelope"></i>
                 <p>
-                 Application Forms
+                  Application Forms
                 </p>
               </a>
             </li>

@@ -73,12 +73,12 @@
             <a href="{{ route('about') }}" class="nav-item nav-link">About Us</a>
             <a href="{{ route('gallery') }}" class="nav-item nav-link">Gallery</a>
             <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Inspiring Records</a>
-                            <div class="dropdown-menu bg-light mt-2">
-                                    <a href="{{ route('category' ) }}" class="dropdown-item">Types of Records</a>
-                                    <a href="{{ route('form.index' ) }}" class="dropdown-item">Record Application Form</a>
-                            </div>
-                        </div>
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Inspiring Records</a>
+              <div class="dropdown-menu bg-light mt-2">
+                <a href="{{ route('category') }}" class="dropdown-item">Types of Records</a>
+                <a href="{{ route('form.index') }}" class="dropdown-item">Record Application Form</a>
+              </div>
+            </div>
             <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Categories</a>
               <div class="dropdown-menu bg-light mt-2">
@@ -136,18 +136,18 @@
           <div class="col-6 col-md-4 wow fadeIn" data-wow-delay="{{ 0.1 + ($index * 0.1) }}s">
             <a href="{{ route('gallery.single', $gallery->id) }}" style="text-decoration: none; color: inherit;">
               <div class="choose-card gallery-card" style="border: 2px solid {{ $index % 2 == 0 ? '#4d194d' : '#c7b16b' }};
-                          border-radius: 5px; padding: 4px;">
+                            border-radius: 5px; padding: 4px;">
                 <img class="img-fluid" src="{{ asset('storage/' . $gallery->img) }}"
                   style="width: 100%; height: 150px; object-fit: contain; border-radius: 4px; background-color: #f8f8f8;">
 
 
                 <h6 class="mb-0 mt-1" style="overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; 
-                             -webkit-box-orient:vertical; word-break:break-word;">
+                               -webkit-box-orient:vertical; word-break:break-word;">
                   {{ $gallery->title }}
                 </h6>
 
                 <p style="overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; 
-                            -webkit-box-orient:vertical; word-break:break-word;">
+                              -webkit-box-orient:vertical; word-break:break-word;">
                   {{ $gallery->description }}
                 </p>
               </div>

@@ -87,8 +87,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Inspiring Records</a>
                             <div class="dropdown-menu bg-light mt-2">
-                                    <a href="{{ route('category' ) }}" class="dropdown-item">Types of Records</a>
-                                    <a href="{{ route('form.index' ) }}" class="dropdown-item">Record Application Form</a>
+                                <a href="{{ route('category') }}" class="dropdown-item">Types of Records</a>
+                                <a href="{{ route('form.index') }}" class="dropdown-item">Record Application Form</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
@@ -296,13 +296,15 @@
                                         style="width:100%; height:200px; object-fit:cover; display:block;">
 
                                     <a class="project-overlay text-decoration-none d-flex flex-column justify-content-center align-items-center"
-                                        href="#!" style="position:absolute; top:0; left:0; width:100%; height:100%; 
-                                                                background:rgba(0,0,0,0.6); color:#fff; opacity:0; transition:0.3s;
-                                                                padding:10px; box-sizing:border-box; text-align:center;">
-                                        <h4 style="width:100%; margin:0; 
-                                                                        overflow:hidden; 
-                                                                        word-break:break-word; 
-                                                                        font-size:1rem; line-height:1.2em; color:#fff;">
+                                        href="#!"
+                                        style="position:absolute; top:0; left:0; width:100%; height:100%; 
+                                                                    background:rgba(0,0,0,0.6); color:#fff; opacity:0; transition:0.3s;
+                                                                    padding:10px; box-sizing:border-box; text-align:center;">
+                                        <h4
+                                            style="width:100%; margin:0; 
+                                                                            overflow:hidden; 
+                                                                            word-break:break-word; 
+                                                                            font-size:1rem; line-height:1.2em; color:#fff;">
                                             {{ $gallery->title }}
                                         </h4>
 
@@ -345,14 +347,14 @@
                                         <img class="img-fluid w-100" src="{{ asset('storage/' . $record->image) }}"
                                             alt="{{ $record->name }}" style="height:200px; object-fit:cover;">
                                         <h3 style="font-size:1.25rem;
-                                                                            line-height:1.2em;
-                                                                            max-height:2.4em; /* 2 lines */
-                                                                            display:-webkit-box;
-                                                                            -webkit-line-clamp:2;
-                                                                            -webkit-box-orient:vertical;
-                                                                            overflow:hidden;
-                                                                            word-break:break-word;
-                                                                            text-overflow:ellipsis;">
+                                                                                line-height:1.2em;
+                                                                                max-height:2.4em; /* 2 lines */
+                                                                                display:-webkit-box;
+                                                                                -webkit-line-clamp:2;
+                                                                                -webkit-box-orient:vertical;
+                                                                                overflow:hidden;
+                                                                                word-break:break-word;
+                                                                                text-overflow:ellipsis;">
                                             {{ $record->name }}
                                         </h3>
                                     </a>
@@ -370,113 +372,120 @@
             </div>
         </div>
         <!-- Service End -->
-<!-- Verify Certificate Start -->
-<div class="container text-center py-5" style="max-width:700px;">
-    <h1 class="mb-3">Verify Your Certificate</h1>
-    <p class="mb-4">Enter your certificate code to verify its authenticity and view the associated record details.</p>
+        <!-- Verify Certificate Start -->
+        <div class="container text-center py-5" style="max-width:700px;">
+            <h1 class="mb-3">Verify Your Certificate</h1>
+            <p class="mb-4">Enter your certificate code to verify its authenticity and view the associated record
+                details.</p>
 
-    <form id="verifyForm" class="d-flex justify-content-center">
-        <input class="form-control me-2" type="text" name="code" 
-               placeholder="Enter certificate code (e.g., BR123)" 
-               style="height: 50px; max-width: 400px; border: 2px solid #4d194d; border-radius: 5px;" required>
-        <button type="submit" class="btn btn-primary" style="height: 50px;">Verify</button>
-    </form>
+            <form id="verifyForm" class="d-flex justify-content-center">
+                <input class="form-control me-2" type="text" name="code"
+                    placeholder="Enter certificate code (e.g., BR123)"
+                    style="height: 50px; max-width: 400px; border: 2px solid #4d194d; border-radius: 5px;" required>
+                <button type="submit" class="btn btn-primary" style="height: 50px;">Verify</button>
+            </form>
 
-    <div id="result" class="mt-4"></div>
-</div>
-
-
-<!-- Footer Start -->
-<div class="container-fluid text-dark-50 footer pt-5" 
-     style="background: linear-gradient(135deg, #4d194d, #c7b16b);">
-  <div class="container py-5">
-    <!-- Use align-items-stretch so columns are equal height; g-4 for slightly tighter spacing -->
-    <div class="row g-4 justify-content-center text-center text-md-start align-items-stretch">
-
-      <!-- About Section -->
-      <div class="col-12 col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
-        <!-- Make column a flex column so content can be vertically centered if needed -->
-        <div class="d-flex flex-column h-100">
-          <a href="{{ route('home') }}" class="d-inline-block mb-3">
-            <h1 class="m-0" style="color:#c7b16b; font-size:1.25rem;">BOOK OF RECORD</h1>
-          </a>
-          <p class="mb-0 mt-2" style="color:#e6ccff; line-height:1.4;">
-            Book of Record is a global platform dedicated to recognizing extraordinary achievements 
-            and inspiring individuals to push beyond their limits. We honor talents, innovations, 
-            and milestones that make a difference—celebrating every story of determination, creativity, 
-            and excellence.
-          </p>
+            <div id="result" class="mt-4"></div>
         </div>
-      </div>
 
-      <!-- Our Highlights (Centered) -->
-      <div class="col-12 col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
-        <div class="d-flex flex-column h-100 justify-content-center">
-          <h5 class="mb-4" style="color: #c7b16b;">Our Highlights</h5>
 
-          <!-- limit width and center the list for better visual balance -->
-          <ul class="list-unstyled mx-auto" style="color: #e6ccff; max-width: 300px;">
-            <li class="d-flex align-items-start mb-2">
-              <i class="fa-solid fa-star me-3" style="font-size:1rem; margin-top:3px;"></i>
-              <span>Recognizing Extraordinary Achievements</span>
-            </li>
-            <li class="d-flex align-items-start mb-2">
-              <i class="fa-solid fa-trophy me-3" style="font-size:1rem; margin-top:3px;"></i>
-              <span>Inspiring Individuals Worldwide</span>
-            </li>
-            <li class="d-flex align-items-start mb-2">
-              <i class="fa-solid fa-book me-3" style="font-size:1rem; margin-top:3px;"></i>
-              <span>Documenting Talents and Milestones</span>
-            </li>
-            <li class="d-flex align-items-start">
-              <i class="fa-solid fa-lightbulb me-3" style="font-size:1rem; margin-top:3px;"></i>
-              <span>Motivating Creativity and Excellence</span>
-            </li>
-          </ul>
+        <!-- Footer Start -->
+        <div class="container-fluid text-dark-50 footer pt-5"
+            style="background: linear-gradient(135deg, #4d194d, #c7b16b);">
+            <div class="container py-5">
+                <!-- Use align-items-stretch so columns are equal height; g-4 for slightly tighter spacing -->
+                <div class="row g-4 justify-content-center text-center text-md-start align-items-stretch">
+
+                    <!-- About Section -->
+                    <div class="col-12 col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                        <!-- Make column a flex column so content can be vertically centered if needed -->
+                        <div class="d-flex flex-column h-100">
+                            <a href="{{ route('home') }}" class="d-inline-block mb-3">
+                                <h1 class="m-0" style="color:#c7b16b; font-size:1.25rem;">BOOK OF RECORD</h1>
+                            </a>
+                            <p class="mb-0 mt-2" style="color:#e6ccff; line-height:1.4;">
+                                Book of Record is a global platform dedicated to recognizing extraordinary achievements
+                                and inspiring individuals to push beyond their limits. We honor talents, innovations,
+                                and milestones that make a difference—celebrating every story of determination,
+                                creativity,
+                                and excellence.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Our Highlights (Centered) -->
+                    <div class="col-12 col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+                        <div class="d-flex flex-column h-100 justify-content-center">
+                            <h5 class="mb-4" style="color: #c7b16b;">Our Highlights</h5>
+
+                            <!-- limit width and center the list for better visual balance -->
+                            <ul class="list-unstyled mx-auto" style="color: #e6ccff; max-width: 300px;">
+                                <li class="d-flex align-items-start mb-2">
+                                    <i class="fa-solid fa-star me-3" style="font-size:1rem; margin-top:3px;"></i>
+                                    <span>Recognizing Extraordinary Achievements</span>
+                                </li>
+                                <li class="d-flex align-items-start mb-2">
+                                    <i class="fa-solid fa-trophy me-3" style="font-size:1rem; margin-top:3px;"></i>
+                                    <span>Inspiring Individuals Worldwide</span>
+                                </li>
+                                <li class="d-flex align-items-start mb-2">
+                                    <i class="fa-solid fa-book me-3" style="font-size:1rem; margin-top:3px;"></i>
+                                    <span>Documenting Talents and Milestones</span>
+                                </li>
+                                <li class="d-flex align-items-start">
+                                    <i class="fa-solid fa-lightbulb me-3" style="font-size:1rem; margin-top:3px;"></i>
+                                    <span>Motivating Creativity and Excellence</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-12 col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="d-flex flex-column h-100 justify-content-center text-center text-md-start">
+                            <h5 class="mb-4" style="color: #c7b16b;">Quick Links</h5>
+
+                            <div class="d-flex flex-column">
+                                <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;"
+                                    href="{{ route('home') }}">
+                                    <i class="fa-solid fa-house me-2"></i> Home
+                                </a>
+                                <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;"
+                                    href="{{ route('about') }}">
+                                    <i class="fa-solid fa-circle-info me-2"></i> About Us
+                                </a>
+                                <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;"
+                                    href="{{ route('gallery') }}">
+                                    <i class="fa-solid fa-images me-2"></i> Gallery
+                                </a>
+                                <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;"
+                                    href="{{ route('category') }}">
+                                    <i class="fa-solid fa-trophy me-2"></i> Inspiring Records
+                                </a>
+                                <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;"
+                                    href="{{ route('contact.index') }}">
+                                    <i class="fa-solid fa-envelope me-2"></i> Contact
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="container">
+                <div class="copyright text-center py-3">
+                    <p class="footer-text mt-3 mb-0" style="color: #c7b16b;">
+                        Copyright &copy; 2025
+                        <a href="http://astrasoftwaresolutions.com/" target="_blank" style="color: #e6ccff;">
+                            ASTRA SOFTWARE SOLUTIONS
+                        </a> | All rights reserved
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Quick Links -->
-      <div class="col-12 col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
-        <div class="d-flex flex-column h-100 justify-content-center text-center text-md-start">
-          <h5 class="mb-4" style="color: #c7b16b;">Quick Links</h5>
-
-          <div class="d-flex flex-column">
-            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('home') }}">
-              <i class="fa-solid fa-house me-2"></i> Home
-            </a>
-            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('about') }}">
-              <i class="fa-solid fa-circle-info me-2"></i> About Us
-            </a>
-            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('gallery') }}">
-              <i class="fa-solid fa-images me-2"></i> Gallery
-            </a>
-            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('category') }}">
-              <i class="fa-solid fa-trophy me-2"></i> Inspiring Records
-            </a>
-            <a class="btn btn-link px-0 d-flex align-items-center" style="color: #e6ccff;" href="{{ route('contact.index') }}">
-              <i class="fa-solid fa-envelope me-2"></i> Contact
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Copyright -->
-  <div class="container">
-    <div class="copyright text-center py-3">
-      <p class="footer-text mt-3 mb-0" style="color: #c7b16b;">
-        Copyright &copy; 2025
-        <a href="http://astrasoftwaresolutions.com/" target="_blank" style="color: #e6ccff;">
-          ASTRA SOFTWARE SOLUTIONS
-        </a> | All rights reserved
-      </p>
-    </div>
-  </div>
-</div>
-<!-- Footer End -->
+        <!-- Footer End -->
 
 
 
@@ -545,19 +554,19 @@
             });
         });
     </script>
-<script>
-$(document).ready(function() {
-    $('form').on('submit', function(e) {
-        e.preventDefault();
-        let code = $('input[name="code"]').val();
+    <script>
+        $(document).ready(function () {
+            $('form').on('submit', function (e) {
+                e.preventDefault();
+                let code = $('input[name="code"]').val();
 
-        $.ajax({
-            url: '/verify-certificate', 
-            method: 'GET',
-            data: { code: code },
-            success: function(res) {
-                if(res.status === 'success') {
-                    $('#result').html(`
+                $.ajax({
+                    url: '/verify-certificate',
+                    method: 'GET',
+                    data: { code: code },
+                    success: function (res) {
+                        if (res.status === 'success') {
+                            $('#result').html(`
                         <div style="
                             border-left: 5px solid #4d194d;
                             background: linear-gradient(90deg, #f9f0ff, #fff7e6);
@@ -574,8 +583,8 @@ $(document).ready(function() {
                             <p><strong>Years:</strong> ${res.years}</p>
                         </div>
                     `);
-                } else {
-                    $('#result').html(`
+                        } else {
+                            $('#result').html(`
                         <div style="
                             border-left: 5px solid #c7b16b;
                             background: #fff0e6;
@@ -590,10 +599,10 @@ $(document).ready(function() {
                             <p style="color:red;">${res.message}</p>
                         </div>
                     `);
-                }
-            },
-            error: function() {
-                $('#result').html(`
+                        }
+                    },
+                    error: function () {
+                        $('#result').html(`
                     <div style="
                         border-left: 5px solid #c7b16b;
                         background: #fff0e6;
@@ -608,11 +617,11 @@ $(document).ready(function() {
                         <p>Something went wrong. Try again.</p>
                     </div>
                 `);
-            }
+                    }
+                });
+            });
         });
-    });
-});
-</script>
+    </script>
 
 </body>
 
