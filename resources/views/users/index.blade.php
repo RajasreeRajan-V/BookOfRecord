@@ -85,7 +85,7 @@
                         <a href="{{ route('about') }}" class="nav-item nav-link">About Us</a>
                         <a href="{{ route('gallery') }}" class="nav-item nav-link">Gallery</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Inspiring Records</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Records</a>
                             <div class="dropdown-menu bg-light mt-2">
                                 <a href="{{ route('category') }}" class="dropdown-item">Types of Records</a>
                                 <a href="{{ route('form.index') }}" class="dropdown-item">Record Application Form</a>

@@ -87,8 +87,6 @@
     </div>
   </div>
   <!-- Navbar End -->
-
-
   <!-- Hero Start -->
   <div class="container-fluid pb-5 bg-primary hero-header">
     <div class="container py-5">
@@ -140,9 +138,11 @@
             {{ $record->description }}
           </p>
           <ul style="list-style-type: disc; padding-left: 20px; line-height: 1.6;">
-            <li><strong>Category:</strong> {{ $record->category->name ?? 'N/A' }}</li>
-            {{-- <li><strong>Record No:</strong> {{ $record->record_no ?? 'N/A' }}</li> --}}
-            <p> {{ $record->details ?? 'Not specified' }} </p>
+          <li><strong>Category:</strong> {{ $record->category->name ?? 'N/A' }}</li>
+          <li><strong>Record No:</strong> {{ $record->record_no ?? 'N/A' }}</li>
+          <li><strong>Details:</strong> {{ $record->details ?? 'Not specified' }}</li>
+          <li><strong>Years:</strong> {{ $record->years ?? 'Not specified' }}</li>
+          <li><strong>Providers:</strong> {{ $record->providers ?? 'Not specified' }}</li>
           </ul>
           <a href="{{ url()->previous() }}" class="btn btn-outline-primary mt-3">
             <i class="fas fa-arrow-left"></i> Back

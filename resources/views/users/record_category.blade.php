@@ -160,7 +160,6 @@
   <!-- Category End -->
 
 
-
   <!-- Footer Start -->
   <div class="container-fluid text-dark-50 footer pt-5" style="background: linear-gradient(135deg, #4d194d, #c7b16b);">
     <div class="container py-5">
